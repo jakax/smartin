@@ -5,9 +5,12 @@ interface ArrowLinkProps {
   children: React.ReactNode;
   className?: string;
   variant?: "primary" | "ghost" | "text";
+  direction?: "right" | "left";
 }
 
-function ArrowSvg() {
+function ArrowSvg({ direction = "right" }: { direction?: "right" | "left" }) {
+  const isLeft = direction === "left";
+
   return (
     <svg
       className={styles.arrowSvg}
@@ -16,20 +19,26 @@ function ArrowSvg() {
       viewBox="0 0 12 10"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ order: isLeft ? -1 : 1 }}
     >
+      {/* Shaft */}
       <line
         className={styles.arrowSvgShaft}
-        x1="0"
+        x1={isLeft ? "12" : "0"}
         y1="5"
-        x2="6"
+        x2={isLeft ? "6" : "6"}
         y2="5"
         stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
+        style={{
+          transformOrigin: isLeft ? "right center" : "left center",
+        }}
       />
+      {/* Arrowhead */}
       <polyline
         className={styles.arrowSvgHead}
-        points="6,1 11,5 6,9"
+        points={isLeft ? "6,1 1,5 6,9" : "6,1 11,5 6,9"}
         stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
@@ -45,6 +54,7 @@ export default function ArrowLink({
   children,
   className = "",
   variant = "text",
+  direction = "right",
 }: ArrowLinkProps) {
   const baseClass =
     variant === "primary"
@@ -56,8 +66,8 @@ export default function ArrowLink({
   return (
     <a href={href} className={`${baseClass} ${styles.arrowLink} ${className}`}>
       <span className={styles.arrowLinkContent}>
+        <ArrowSvg direction={direction} />
         <span>{children}</span>
-        <ArrowSvg />
       </span>
     </a>
   );

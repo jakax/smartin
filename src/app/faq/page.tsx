@@ -7,6 +7,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import FadeIn from "@/components/FadeIn";
 import styles from "@/styles/landing.module.css";
+import ArrowLink from "@/components/ArrowLink";
 
 export default function FaqPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -24,9 +25,9 @@ export default function FaqPage() {
         <section className={styles.faqPageSection}>
           <FadeIn>
             <div className={styles.faqPageHeader}>
-              <Link href="/" className={styles.faqBackLink}>
-                ← Back to home
-              </Link>
+              <ArrowLink href="/" direction="left" className={styles.faqBackLink}>
+                Back to home
+              </ArrowLink>
               <p className={styles.sectionLabel}>FAQ</p>
               <h1 className={styles.faqPageTitle}>
                 Every question,<br />
