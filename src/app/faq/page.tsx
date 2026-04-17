@@ -34,7 +34,7 @@ export default function FaqPage() {
                 <span className={styles.heroTitleAccent}>answered.</span>
               </h1>
               <p className={styles.faqPageSubtitle}>
-                Everything you need to know about the Structural Review and how SmartIn works.
+                Everything you need to know about how SmartIn works.
                 Still have questions? Send us a message.
               </p>
             </div>
@@ -74,7 +74,7 @@ export default function FaqPage() {
                 Send us a message and we will answer directly.
               </h2>
               <Link href="/#contact" className={styles.btnPrimary}>
-                Request a Review
+                Contact us
               </Link>
             </div>
           </FadeIn>

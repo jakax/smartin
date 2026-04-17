@@ -43,20 +43,17 @@ export const PHASES: Phase[] = [
   },
 ];
 
-export const DELIVERABLES: string[] = [
-  "Executive summary (1 page): biggest blockers + next 30 days",
-  "Product flow review: landing → signup → activation",
-  "UX friction map: issues ranked by severity",
-  "Performance snapshot: key bottlenecks & quick wins",
-  "Technical signals: scalability & reliability risks",
-  "Top-10 roadmap: Impact × Effort × Risk scoring",
+export const PROCESS_STEPS: string[] = [
+  "We learn about your organization, your market, and your goals",
+  "We define your visual identity: color, typography, tone",
+  "We design and build the product that communicates it",
+  "We iterate until it feels right",
 ];
 
-export const WHO: string[] = [
-  "Pre-seed to Seed (or early Series A)",
-  "0–50k MRR or active waitlist/traction",
-  "1–10 person teams",
-  "Non-technical founder-led or founder needs technical clarity",
+export const WORKS_WITH: string[] = [
+  "New organizations taking their first steps",
+  "Existing businesses ready for a refresh",
+  "Anyone who wants their product to mean something",
 ];
 
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [
@@ -80,35 +77,43 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
 
 export const FAQ_ITEMS: FaqItem[] = [
   {
-    q: "What exactly do I get from the Structural Review?",
-    a: "You receive a complete written audit covering five areas: product flow (landing to activation), UX friction points ranked by severity, performance bottlenecks, technical risk signals, and a top-10 prioritized roadmap scored by Impact × Effort × Risk. Everything is delivered in 5 business days with a 30-minute debrief call to walk you through the findings and answer questions.",
+    q: "Do we need to have a clear idea of what we want before reaching out?",
+    a: "Not at all. Many of our clients come to us with a general direction but no clear picture yet. That's exactly what the first conversation is for — we help you figure out what you need, not just how to build it.",
   },
   {
-    q: "I am not technical. Will I understand the audit?",
-    a: "That is exactly who this is built for. Every finding is written in plain language with context explaining why it matters — not just what it is. The executive summary gives you a one-page view of your biggest blockers and what to do in the next 30 days. You will not need to be technical to act on the output.",
+    q: "Do you work with people who don't have anything built yet?",
+    a: "Yes. Whether you're starting from scratch or looking to refresh something that already exists, we adapt to where you are.",
   },
   {
-    q: "How is this different from a generic UX audit?",
-    a: "Most audits review your interface in isolation. SmartIn reviews your entire product structure: how users flow from discovery to activation, where they drop off, what technical decisions are creating invisible drag, and how your roadmap priorities are stacked against each other. It is a product audit, not just a design review.",
+    q: "What does the process actually look like?",
+    a: "It starts with a conversation. We learn about you, your organization, and what you want to communicate. From there we move into research, identity definition, and then design and build. Every step is collaborative.",
   },
   {
-    q: "What if I only need help with one specific area?",
-    a: "The Structural Review covers all five areas because they are deeply connected — a performance issue often explains a UX drop-off, and a structural decision often explains a technical risk. That said, during the debrief we will talk about where your highest leverage is, and Phase 2 implementation can be scoped to focus on specific areas if that makes sense for your stage.",
+    q: "Do you do branding, or just web and app development?",
+    a: "Both, and we don't separate them. The visual identity — color, typography, logo — and the product are built together because they need to speak the same language.",
+  },
+  {
+    q: "How long does a project take?",
+    a: "It depends on the scope. A landing page with a defined identity can be ready in a few weeks. A full app with brand work from scratch takes longer. We'll give you an honest timeline after our first conversation.",
   },
   {
     q: "How do you handle confidentiality?",
-    a: "Everything shared with SmartIn is treated as confidential. We do not share client information, product details, or findings with third parties. If you need an NDA signed before sharing access or sensitive materials, we are happy to do that — just mention it when you submit your request.",
+    a: "Everything you share with us is treated as confidential. If you need an NDA before sharing sensitive materials, just mention it and we'll sort it out.",
   },
   {
-    q: "What do I need to provide to get started?",
-    a: "At minimum: your product URL and a short description of your current situation — where you are, what is not working, and what you are trying to achieve. If you have analytics access, a staging environment, or internal docs you are comfortable sharing, those help us go deeper. But a public URL and honest context is enough to get started.",
+    q: "What if I already have a brand but just need a website or app?",
+    a: "We can work with what you have. If your identity is solid, we build around it. If we notice things that could be stronger, we'll mention it — but there's no obligation to revisit anything you're happy with.",
   },
   {
-    q: "Do you work with products that are not SaaS?",
-    a: "The Structural Review is designed for digital products — SaaS, mobile apps, marketplaces, and B2B tools. If your product has users, a flow, and a conversion goal, the framework applies. If you are not sure whether your product fits, send us a message and we will tell you honestly.",
+    q: "How involved do I need to be during the process?",
+    a: "As involved as you want to be. Some clients prefer to stay close at every step, others give us direction and check in at key milestones. We adapt to how you work best.",
   },
   {
-    q: "What happens after the Structural Review?",
-    a: "You will have a clear picture of your biggest blockers and a prioritized roadmap. From there, you can implement the fixes yourself, hand the roadmap to your team, or move into Phase 2 with SmartIn where we execute the highest-impact changes directly. There is no obligation to continue — the audit is designed to be valuable on its own.",
+    q: "What happens after the project is delivered?",
+    a: "We don't disappear after launch. If something needs adjusting, if you want to evolve the product, or if a new need comes up — we're available. We prefer long-term relationships over one-off deliveries.",
+  },
+  {
+    q: "Do you work with clients outside of New Zealand?",
+    a: "Yes. We work remotely with clients anywhere. Most of our process happens over calls and shared documents, so location isn't a barrier.",
   },
 ];

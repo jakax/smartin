@@ -22,9 +22,6 @@ export default function FaqPreview() {
             <p className={styles.faqSubtitle}>
               A few of the most common questions. See all answers on the FAQ page.
             </p>
-            <ArrowLink href="/faq" className={styles.faqViewAll}>
-              View all questions
-            </ArrowLink>
           </div>
         </FadeIn>
 

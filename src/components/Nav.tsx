@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { NAV_LINKS } from "@/constants/content";
 import styles from "@/styles/landing.module.css";
 
@@ -10,6 +11,8 @@ export default function Nav() {
   const [mouseX, setMouseX] = useState(0);
   const [glowVisible, setGlowVisible] = useState(false);
   const navRef = useRef<HTMLElement>(null);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -28,9 +31,10 @@ export default function Nav() {
     setMenuOpen(false);
   };
 
+  const getHref = (href: string) => isHome ? href : `/${href}`;
+
   return (
     <>
-      {/* Glow vive FUERA de la nav para evitar el stacking context del backdrop-filter */}
       <div
         className={styles.navGlowLayer}
         style={{
@@ -56,18 +60,18 @@ export default function Nav() {
 
         <div className={styles.navLinks}>
           {NAV_LINKS.map((l) => (
-            <a key={l.label} href={l.href} className={styles.navLink}>
+            <a key={l.label} href={getHref(l.href)} className={styles.navLink}>
               {l.label}
             </a>
           ))}
         </div>
 
         <a
-          href="#contact"
+          href={getHref("#contact")}
           className={`${styles.btnPrimary} ${styles.navCta}`}
           style={{ padding: "10px 22px", fontSize: "13px" }}
         >
-          Request a Review
+          Start a conversation
         </a>
 
         <button
@@ -87,7 +91,7 @@ export default function Nav() {
           {NAV_LINKS.map((l) => (
             <a
               key={l.label}
-              href={l.href}
+              href={getHref(l.href)}
               className={styles.mobileMenuLink}
               onClick={() => setMenuOpen(false)}
             >
@@ -95,11 +99,11 @@ export default function Nav() {
             </a>
           ))}
           <a
-            href="#contact"
+            href={getHref("#contact")}
             className={styles.btnPrimary}
             onClick={() => setMenuOpen(false)}
           >
-            Request a Review
+            Start a conversation
           </a>
         </div>
       )}
