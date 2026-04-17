@@ -10,9 +10,18 @@
 }
 
 /* ─── Scrollbar ─────────────────────────────────────────── */
-.root :global(::-webkit-scrollbar) { width: 6px; }
-.root :global(::-webkit-scrollbar-track) { background: #080C14; }
-.root :global(::-webkit-scrollbar-thumb) { background: #1E2D4A; border-radius: 3px; }
+.root :global(::-webkit-scrollbar) {
+  width: 6px;
+}
+
+.root :global(::-webkit-scrollbar-track) {
+  background: #080C14;
+}
+
+.root :global(::-webkit-scrollbar-thumb) {
+  background: #1E2D4A;
+  border-radius: 3px;
+}
 
 /* ─── Typography ─────────────────────────────────────────── */
 .displayFont {
@@ -26,22 +35,24 @@
   pointer-events: none;
   z-index: 0;
 }
+
 .ambientBlob1 {
   position: absolute;
   top: -20%;
   left: -10%;
   width: 60vw;
   height: 60vw;
-  background: radial-gradient(circle, rgba(14,165,233,0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.06) 0%, transparent 70%);
   border-radius: 50%;
 }
+
 .ambientBlob2 {
   position: absolute;
   bottom: 10%;
   right: -15%;
   width: 50vw;
   height: 50vw;
-  background: radial-gradient(circle, rgba(99,102,241,0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
   border-radius: 50%;
 }
 
@@ -71,26 +82,31 @@
   justify-content: space-between;
   transition: background 0.4s, border-bottom 0.4s, backdrop-filter 0.4s;
 }
+
 .navScrolled {
-  background: rgba(8,12,20,0.92);
+  background: rgba(8, 12, 20, 0.92);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
+
 .navLogo {
   font-family: 'Instrument Serif', Georgia, serif;
   font-size: 22px;
   letter-spacing: -0.01em;
   color: #E8EDF5;
 }
+
 .navLogoAccent {
   color: #0EA5E9;
   font-style: italic;
 }
+
 .navLinks {
   display: flex;
   gap: 36px;
   align-items: center;
 }
+
 .navLink {
   color: #8899BB;
   text-decoration: none;
@@ -99,7 +115,10 @@
   letter-spacing: 0.02em;
   transition: color 0.2s;
 }
-.navLink:hover { color: #E8EDF5; }
+
+.navLink:hover {
+  color: #E8EDF5;
+}
 
 .navMobileBtn {
   display: none;
@@ -123,6 +142,7 @@
   justify-content: center;
   gap: 32px;
 }
+
 .mobileMenuLink {
   font-size: 22px;
   color: #8899BB;
@@ -130,7 +150,10 @@
   font-weight: 500;
   transition: color 0.2s;
 }
-.mobileMenuLink:hover { color: #E8EDF5; }
+
+.mobileMenuLink:hover {
+  color: #E8EDF5;
+}
 
 /* ─── Buttons ────────────────────────────────────────────── */
 .btnPrimary {
@@ -148,7 +171,11 @@
   letter-spacing: 0.01em;
   font-family: 'Inter', sans-serif;
 }
-.btnPrimary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+.btnPrimary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
 
 .btnGhost {
   background: transparent;
@@ -164,12 +191,16 @@
   transition: all 0.2s;
   font-family: 'Inter', sans-serif;
 }
-.btnGhost:hover { border-color: #4466AA; color: #E8EDF5; }
+
+.btnGhost:hover {
+  border-color: #4466AA;
+  color: #E8EDF5;
+}
 
 /* ─── Glow line ──────────────────────────────────────────── */
 .glowLine {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(14,165,233,0.4), rgba(99,102,241,0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.4), rgba(99, 102, 241, 0.4), transparent);
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -194,20 +225,23 @@
   margin: 0 auto;
   overflow: visible;
 }
+
 .heroInner {
   max-width: 780px;
 }
+
 .heroBadge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(14,165,233,0.08);
-  border: 1px solid rgba(14,165,233,0.2);
+  background: rgba(14, 165, 233, 0.08);
+  border: 1px solid rgba(14, 165, 233, 0.2);
   border-radius: 100px;
   padding: 6px 16px;
   margin-bottom: 32px;
   animation: slideIn 0.6s ease 0.1s both;
 }
+
 .heroBadgeDot {
   width: 6px;
   height: 6px;
@@ -216,12 +250,14 @@
   display: inline-block;
   flex-shrink: 0;
 }
+
 .heroBadgeText {
   font-size: 13px;
   color: #0EA5E9;
   font-weight: 600;
   letter-spacing: 0.05em;
 }
+
 .heroTitle {
   font-family: 'Instrument Serif', Georgia, serif;
   font-size: clamp(48px, 6.5vw, 80px);
@@ -234,6 +270,7 @@
   color: #E8EDF5;
   overflow: visible;
 }
+
 .heroTitleAccent {
   background: linear-gradient(135deg, #0EA5E9, #6366F1);
   -webkit-background-clip: text;
@@ -243,6 +280,7 @@
   padding-bottom: 0.15em;
   line-height: 1.2;
 }
+
 .heroSubtitle {
   font-size: 18px;
   color: #8899BB;
@@ -252,6 +290,7 @@
   animation: fadeUp 0.8s ease 0.35s both;
   font-weight: 400;
 }
+
 .heroCtas {
   display: flex;
   gap: 16px;
@@ -259,45 +298,41 @@
   animation: fadeUp 0.8s ease 0.5s both;
 }
 
-/* ─── Metrics ────────────────────────────────────────────── */
-.metricsGrid {
+/* ─── Values ─────────────────────────────────────────────── */
+.valuesGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin-top: 72px;
   animation: fadeUp 0.8s ease 0.65s both;
 }
-.metricCard {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
+
+.valueCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 12px;
   padding: 28px 24px;
-  text-align: center;
   transition: border-color 0.3s, background 0.3s;
 }
-.metricCard:hover {
-  border-color: rgba(14,165,233,0.3);
-  background: rgba(14,165,233,0.04);
+
+.valueCard:hover {
+  border-color: rgba(14, 165, 233, 0.3);
+  background: rgba(14, 165, 233, 0.04);
 }
-.metricValue {
+
+.valueTitle {
   font-family: 'Instrument Serif', Georgia, serif;
-  font-size: 42px;
-  font-weight: 400;
-  line-height: 1;
-  color: #E8EDF5;
-}
-.metricUnit {
   font-size: 18px;
-  color: #0EA5E9;
-  margin-left: 4px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
+  font-weight: 400;
+  color: #E8EDF5;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
 }
-.metricLabel {
-  font-size: 13px;
+
+.valueDesc {
+  font-size: 14px;
   color: #8899BB;
-  margin-top: 8px;
-  font-weight: 500;
+  line-height: 1.65;
 }
 
 /* ─── Problem section ────────────────────────────────────── */
@@ -306,6 +341,7 @@
   max-width: 1100px;
   margin: 0 auto;
 }
+
 .problemTitle {
   font-family: 'Instrument Serif', Georgia, serif;
   font-size: clamp(30px, 4vw, 46px);
@@ -315,6 +351,7 @@
   margin-bottom: 24px;
   color: #E8EDF5;
 }
+
 .problemBody {
   font-size: 17px;
   color: #8899BB;
@@ -328,51 +365,67 @@
   max-width: 1100px;
   margin: 0 auto;
 }
+
 .howLabelWrapper {
   margin-bottom: 56px;
 }
+
 .phasesGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
+
 .phaseCard {
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 16px;
   padding: 36px 32px;
   transition: all 0.3s;
   position: relative;
   overflow: hidden;
 }
+
 .phaseCard::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 2px;
   background: linear-gradient(90deg, #0EA5E9, #6366F1);
   opacity: 0;
   transition: opacity 0.3s;
 }
-.phaseCard:hover { border-color: rgba(14,165,233,0.2); transform: translateY(-4px); }
-.phaseCard:hover::before { opacity: 1; }
+
+.phaseCard:hover {
+  border-color: rgba(14, 165, 233, 0.2);
+  transform: translateY(-4px);
+}
+
+.phaseCard:hover::before {
+  opacity: 1;
+}
+
 .phaseCardHeader {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 24px;
 }
+
 .phaseNum {
   font-family: 'Instrument Serif', Georgia, serif;
   font-size: 52px;
   font-weight: 400;
-  color: rgba(255,255,255,0.06);
+  color: rgba(255, 255, 255, 0.06);
   line-height: 1;
 }
+
 .phaseTag {
   display: inline-block;
-  background: rgba(14,165,233,0.1);
-  border: 1px solid rgba(14,165,233,0.2);
+  background: rgba(14, 165, 233, 0.1);
+  border: 1px solid rgba(14, 165, 233, 0.2);
   color: #0EA5E9;
   font-size: 12px;
   font-weight: 600;
@@ -380,6 +433,7 @@
   border-radius: 100px;
   letter-spacing: 0.05em;
 }
+
 .phaseTitle {
   font-family: 'Instrument Serif', Georgia, serif;
   font-size: 22px;
@@ -388,6 +442,7 @@
   letter-spacing: -0.01em;
   color: #E8EDF5;
 }
+
 .phaseDesc {
   font-size: 15px;
   color: #8899BB;
@@ -400,12 +455,14 @@
   max-width: 1100px;
   margin: 0 auto;
 }
+
 .servicesGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   align-items: start;
 }
+
 .servicesTitle {
   font-family: 'Instrument Serif', Georgia, serif;
   font-size: clamp(26px, 3.5vw, 40px);
@@ -415,12 +472,14 @@
   margin-bottom: 20px;
   color: #E8EDF5;
 }
+
 .servicesBody {
   font-size: 15px;
   color: #8899BB;
   line-height: 1.7;
   margin-bottom: 36px;
 }
+
 .deliverablesLabel {
   font-size: 12px;
   font-weight: 600;
@@ -429,37 +488,48 @@
   text-transform: uppercase;
   margin-bottom: 16px;
 }
+
 .deliverableItem {
   display: flex;
   align-items: flex-start;
   gap: 12px;
   padding: 14px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   font-size: 15px;
   color: #A8B8D8;
   line-height: 1.5;
 }
-.deliverableItem:last-child { border-bottom: none; }
+
+.deliverableItem:last-child {
+  border-bottom: none;
+}
+
 .deliverableArrow {
   color: #0EA5E9;
   margin-top: 2px;
   flex-shrink: 0;
 }
+
 .whoBox {
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 16px;
   padding: 28px;
   margin-top: 32px;
 }
+
 .whoRow {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
-.whoRow:last-child { border-bottom: none; }
+
+.whoRow:last-child {
+  border-bottom: none;
+}
+
 .whoDot {
   width: 6px;
   height: 6px;
@@ -467,6 +537,7 @@
   border-radius: 50%;
   flex-shrink: 0;
 }
+
 .whoText {
   font-size: 14px;
   color: #A8B8D8;
@@ -478,9 +549,11 @@
   max-width: 1100px;
   margin: 0 auto;
 }
+
 .portfolioHeader {
   margin-bottom: 60px;
 }
+
 .portfolioTitle {
   font-family: 'Instrument Serif', Georgia, serif;
   font-size: clamp(28px, 3.5vw, 42px);
@@ -490,24 +563,28 @@
   max-width: 520px;
   color: #E8EDF5;
 }
+
 .portfolioGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
 }
+
 .portfolioCard {
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 20px;
   padding: 44px 40px;
   transition: all 0.4s;
   cursor: default;
 }
+
 .portfolioCard:hover {
-  border-color: rgba(14,165,233,0.25);
-  background: rgba(14,165,233,0.03);
+  border-color: rgba(14, 165, 233, 0.25);
+  background: rgba(14, 165, 233, 0.03);
   transform: translateY(-6px);
 }
+
 .portfolioPreview {
   height: 180px;
   border-radius: 12px;
@@ -517,6 +594,7 @@
   justify-content: center;
   overflow: hidden;
 }
+
 .portfolioScreensWrapper {
   display: flex;
   gap: 8px;
@@ -524,6 +602,7 @@
   padding: 20px;
   justify-content: center;
 }
+
 .portfolioScreenTag {
   border-radius: 6px;
   padding: 6px 12px;
@@ -531,6 +610,7 @@
   font-weight: 500;
   transition: all 0.3s;
 }
+
 .portfolioLabel {
   font-size: 12px;
   font-weight: 600;
@@ -538,6 +618,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+
 .portfolioItemTitle {
   font-family: 'Instrument Serif', Georgia, serif;
   font-size: 26px;
@@ -546,20 +627,23 @@
   margin: 10px 0 14px;
   color: #E8EDF5;
 }
+
 .portfolioDesc {
   font-size: 15px;
   color: #8899BB;
   line-height: 1.7;
   margin-bottom: 24px;
 }
+
 .portfolioTags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
+
 .portfolioTechTag {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 6px;
   padding: 4px 10px;
   font-size: 12px;
@@ -573,16 +657,19 @@
   max-width: 1100px;
   margin: 0 auto;
 }
+
 .faqGrid {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 80px;
   align-items: start;
 }
+
 .faqStickyCol {
   position: sticky;
   top: 100px;
 }
+
 .faqMainTitle {
   font-family: 'Instrument Serif', Georgia, serif;
   font-size: clamp(26px, 3vw, 36px);
@@ -592,14 +679,17 @@
   margin-bottom: 20px;
   color: #E8EDF5;
 }
+
 .faqSubtitle {
   font-size: 15px;
   color: #8899BB;
   line-height: 1.65;
 }
+
 .faqItem {
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
+
 .faqQuestion {
   width: 100%;
   background: none;
@@ -618,11 +708,15 @@
   letter-spacing: 0.01em;
   transition: color 0.2s;
 }
-.faqQuestion:hover { color: #0EA5E9; }
+
+.faqQuestion:hover {
+  color: #0EA5E9;
+}
+
 .faqIcon {
   width: 24px;
   height: 24px;
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -632,11 +726,13 @@
   transition: all 0.3s;
   color: #8899BB;
 }
+
 .faqIconOpen {
-  border-color: rgba(14,165,233,0.4);
+  border-color: rgba(14, 165, 233, 0.4);
   color: #0EA5E9;
   transform: rotate(45deg);
 }
+
 .faqAnswer {
   color: #8899BB;
   font-size: 15px;
@@ -651,12 +747,14 @@
   max-width: 1100px;
   margin: 0 auto;
 }
+
 .contactHeader {
   max-width: 600px;
   margin: 0 auto;
   text-align: center;
   margin-bottom: 60px;
 }
+
 .contactTitle {
   font-family: 'Instrument Serif', Georgia, serif;
   font-size: clamp(30px, 4vw, 48px);
@@ -666,11 +764,13 @@
   margin-bottom: 20px;
   color: #E8EDF5;
 }
+
 .contactSubtitle {
   font-size: 16px;
   color: #8899BB;
   line-height: 1.65;
 }
+
 .contactForm {
   max-width: 520px;
   margin: 0 auto;
@@ -678,16 +778,19 @@
   flex-direction: column;
   gap: 20px;
 }
+
 .formRow {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
+
 .formField {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
+
 .formLabel {
   font-size: 13px;
   font-weight: 600;
@@ -695,9 +798,10 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
+
 .formInput {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 10px;
   padding: 14px 18px;
   color: #E8EDF5;
@@ -708,35 +812,44 @@
   width: 100%;
   resize: vertical;
 }
+
 .formInput:focus {
-  border-color: rgba(14,165,233,0.4);
-  background: rgba(14,165,233,0.04);
+  border-color: rgba(14, 165, 233, 0.4);
+  background: rgba(14, 165, 233, 0.04);
 }
-.formInput::placeholder { color: rgba(255,255,255,0.2); }
+
+.formInput::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
 .formNote {
   font-size: 13px;
   color: #8899BB;
   text-align: center;
 }
+
 .submitBtn {
   width: 100%;
   padding: 16px;
   font-size: 15px;
   text-align: center;
 }
+
 .successBox {
   max-width: 520px;
   margin: 0 auto;
   text-align: center;
-  background: rgba(14,165,233,0.06);
-  border: 1px solid rgba(14,165,233,0.2);
+  background: rgba(14, 165, 233, 0.06);
+  border: 1px solid rgba(14, 165, 233, 0.2);
   border-radius: 20px;
   padding: 60px 40px;
 }
+
 .successIcon {
   font-size: 40px;
   margin-bottom: 20px;
 }
+
 .successTitle {
   font-family: 'Instrument Serif', Georgia, serif;
   font-size: 26px;
@@ -744,6 +857,7 @@
   margin-bottom: 12px;
   color: #E8EDF5;
 }
+
 .successBody {
   color: #8899BB;
   line-height: 1.65;
@@ -751,9 +865,10 @@
 
 /* ─── Footer ─────────────────────────────────────────────── */
 .footer {
-  border-top: 1px solid rgba(255,255,255,0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding: 48px 40px;
 }
+
 .footerInner {
   max-width: 1100px;
   margin: 0 auto;
@@ -763,15 +878,18 @@
   flex-wrap: wrap;
   gap: 20px;
 }
+
 .footerLogo {
   font-family: 'Instrument Serif', Georgia, serif;
   font-size: 20px;
   color: #E8EDF5;
 }
+
 .footerLinks {
   display: flex;
   gap: 32px;
 }
+
 .footerCopy {
   font-size: 13px;
   color: #8899BB;
@@ -783,6 +901,7 @@
   transform: translateY(32px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
+
 .fadeInVisible {
   opacity: 1;
   transform: translateY(0);
@@ -790,93 +909,184 @@
 
 /* ─── Keyframes ──────────────────────────────────────────── */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
 @keyframes slideIn {
-  from { opacity: 0; transform: translateX(-16px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* ─── MOBILE ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
 
-  .navLinks { display: none; }
-  .navCta { display: none; }
-  .navMobileBtn { display: block; }
-  .nav { padding: 0 20px; }
+  .navLinks {
+    display: none;
+  }
+
+  .navCta {
+    display: none;
+  }
+
+  .navMobileBtn {
+    display: block;
+  }
+
+  .nav {
+    padding: 0 20px;
+  }
 
   .heroSection {
     padding: 100px 20px 60px;
     min-height: auto;
   }
+
   .heroTitle {
     font-size: clamp(38px, 10vw, 56px);
   }
+
   .heroSubtitle {
     font-size: 16px;
   }
+
   .heroCtas {
     flex-direction: column;
     align-items: flex-start;
   }
-  .heroCtas a, .heroCtas button {
+
+  .heroCtas a,
+  .heroCtas button {
     width: 100%;
     text-align: center;
   }
-  .metricsGrid {
+
+  .valuesGrid {
     grid-template-columns: 1fr;
     margin-top: 48px;
     gap: 12px;
   }
 
-  .problemSection { padding: 60px 20px; }
-  .problemTitle { font-size: clamp(26px, 7vw, 36px); }
+  .problemSection {
+    padding: 60px 20px;
+  }
 
-  .howSection { padding: 20px 20px 60px; }
+  .problemTitle {
+    font-size: clamp(26px, 7vw, 36px);
+  }
+
+  .howSection {
+    padding: 20px 20px 60px;
+  }
+
   .phasesGrid {
     grid-template-columns: 1fr;
     gap: 16px;
   }
 
-  .servicesSection { padding: 60px 20px; }
+  .servicesSection {
+    padding: 60px 20px;
+  }
+
   .servicesGrid {
     grid-template-columns: 1fr;
     gap: 48px;
   }
 
-  .portfolioSection { padding: 60px 20px; }
+  .portfolioSection {
+    padding: 60px 20px;
+  }
+
   .portfolioGrid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  .portfolioCard { padding: 28px 24px; }
 
-  .faqSection { padding: 60px 20px; }
+  .portfolioCard {
+    padding: 28px 24px;
+  }
+
+  .faqSection {
+    padding: 60px 20px;
+  }
+
   .faqGrid {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  .faqStickyCol { position: static; }
-  .faqQuestion { font-size: 15px; }
 
-  .contactSection { padding: 60px 20px; }
-  .formRow { grid-template-columns: 1fr; }
+  .faqStickyCol {
+    position: static;
+  }
 
-  .footer { padding: 40px 20px; }
-  .footerInner { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .footerLinks { flex-wrap: wrap; gap: 20px; }
+  .faqQuestion {
+    font-size: 15px;
+  }
 
-  .glowLine { margin: 0 20px; }
+  .contactSection {
+    padding: 60px 20px;
+  }
 
-  .container { padding: 0 20px; }
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .footer {
+    padding: 40px 20px;
+  }
+
+  .footerInner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .footerLinks {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .glowLine {
+    margin: 0 20px;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
 }
 
 @media (max-width: 480px) {
-  .heroTitle { font-size: clamp(32px, 9vw, 44px); }
-  .btnPrimary, .btnGhost { padding: 12px 20px; font-size: 14px; }
-  .metricCard { padding: 20px 16px; }
-  .phaseCard { padding: 28px 20px; }
+  .heroTitle {
+    font-size: clamp(32px, 9vw, 44px);
+  }
+
+  .btnPrimary,
+  .btnGhost {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  .valueCard {
+    padding: 20px 16px;
+  }
+
+  .phaseCard {
+    padding: 28px 20px;
+  }
 }
 
 /* ─── FAQ additions ──────────────────────────────────────── */
@@ -890,7 +1100,10 @@
   letter-spacing: 0.02em;
   transition: opacity 0.2s;
 }
-.faqViewAll:hover { opacity: 0.7; }
+
+.faqViewAll:hover {
+  opacity: 0.7;
+}
 
 .faqFooter {
   padding-top: 32px;
@@ -902,9 +1115,11 @@
   max-width: 800px;
   margin: 0 auto;
 }
+
 .faqPageHeader {
   margin-bottom: 64px;
 }
+
 .faqBackLink {
   display: inline-block;
   color: #8899BB;
@@ -913,7 +1128,11 @@
   margin-bottom: 32px;
   transition: color 0.2s;
 }
-.faqBackLink:hover { color: #E8EDF5; }
+
+.faqBackLink:hover {
+  color: #E8EDF5;
+}
+
 .faqPageTitle {
   font-family: 'Instrument Serif', Georgia, serif;
   font-size: clamp(40px, 6vw, 64px);
@@ -925,22 +1144,26 @@
   margin-bottom: 20px;
   color: #E8EDF5;
 }
+
 .faqPageSubtitle {
   font-size: 17px;
   color: #8899BB;
   line-height: 1.7;
   max-width: 560px;
 }
+
 .faqPageList {
   margin-bottom: 80px;
 }
+
 .faqPageCta {
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 20px;
   padding: 52px 48px;
   text-align: center;
 }
+
 .faqCtaTitle {
   font-family: 'Instrument Serif', Georgia, serif;
   font-size: clamp(24px, 3vw, 36px);
@@ -958,9 +1181,10 @@
   margin-bottom: 24px;
   flex-wrap: wrap;
 }
+
 .portfolioTab {
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 12px;
   padding: 16px 24px;
   cursor: pointer;
@@ -973,14 +1197,17 @@
   min-width: 180px;
   font-family: 'Inter', sans-serif;
 }
+
 .portfolioTab:hover {
-  border-color: rgba(14,165,233,0.2);
-  background: rgba(14,165,233,0.03);
+  border-color: rgba(14, 165, 233, 0.2);
+  background: rgba(14, 165, 233, 0.03);
 }
+
 .portfolioTabActive {
-  border-color: rgba(14,165,233,0.35);
-  background: rgba(14,165,233,0.06);
+  border-color: rgba(14, 165, 233, 0.35);
+  background: rgba(14, 165, 233, 0.06);
 }
+
 .portfolioTabLabel {
   font-size: 11px;
   font-weight: 600;
@@ -988,6 +1215,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+
 .portfolioTabTitle {
   font-size: 16px;
   font-weight: 500;
@@ -996,15 +1224,17 @@
 
 /* ─── Portfolio card full ────────────────────────────────── */
 .portfolioCardFull {
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 20px;
   overflow: hidden;
   transition: border-color 0.3s;
 }
+
 .portfolioCardFull:hover {
-  border-color: rgba(14,165,233,0.2);
+  border-color: rgba(14, 165, 233, 0.2);
 }
+
 .portfolioCardContent {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -1012,9 +1242,11 @@
   padding: 36px 40px;
   align-items: start;
 }
+
 .portfolioCardLeft {
   max-width: 520px;
 }
+
 .portfolioCardRight {
   display: flex;
   flex-direction: column;
@@ -1026,9 +1258,10 @@
 .carouselWrapper {
   overflow: hidden;
   padding: 28px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   position: relative;
 }
+
 .carouselWrapper::before,
 .carouselWrapper::after {
   content: '';
@@ -1039,20 +1272,24 @@
   z-index: 2;
   pointer-events: none;
 }
+
 .carouselWrapper::before {
   left: 0;
   background: linear-gradient(90deg, #080C14, transparent);
 }
+
 .carouselWrapper::after {
   right: 0;
   background: linear-gradient(-90deg, #080C14, transparent);
 }
+
 .carouselTrack {
   display: flex;
   gap: 12px;
   width: max-content;
   will-change: transform;
 }
+
 .carouselItem {
   border-radius: 10px;
   padding: 12px;
@@ -1061,6 +1298,7 @@
   gap: 8px;
   flex-shrink: 0;
 }
+
 .carouselMockScreen {
   border: 1px solid;
   border-radius: 6px;
@@ -1071,15 +1309,18 @@
   height: 90px;
   overflow: hidden;
 }
+
 .carouselMockBar {
   height: 6px;
   border-radius: 3px;
   width: 100%;
 }
+
 .carouselMockLine {
   height: 4px;
   border-radius: 2px;
 }
+
 .carouselLabel {
   font-size: 11px;
   font-weight: 600;
@@ -1094,18 +1335,23 @@
     gap: 20px;
     padding: 24px 20px;
   }
+
   .portfolioCardRight {
     align-items: flex-start;
   }
+
   .portfolioTabs {
     flex-direction: column;
   }
+
   .portfolioTab {
     min-width: unset;
   }
+
   .faqPageSection {
     padding: 100px 20px 60px;
   }
+
   .faqPageCta {
     padding: 36px 24px;
   }
@@ -1147,8 +1393,13 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .modalContent {
@@ -1161,16 +1412,23 @@
 }
 
 @keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.94); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .modalClose {
   position: absolute;
   top: -44px;
   right: 0;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: #8899BB;
   width: 32px;
   height: 32px;
@@ -1182,8 +1440,9 @@
   justify-content: center;
   transition: all 0.2s;
 }
+
 .modalClose:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   color: #E8EDF5;
 }
 
@@ -1195,7 +1454,7 @@
   border: 1px solid;
   overflow: hidden;
   background: #0a0f1a;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
 }
 
 .modalFrameLanding {
@@ -1206,7 +1465,7 @@
   border: 1px solid;
   overflow: hidden;
   background: #0a0f1a;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
 }
 
 .modalLabel {
@@ -1230,7 +1489,10 @@
   display: inline-flex;
   transition: opacity 0.2s;
 }
-.arrowLinkText:hover { opacity: 0.75; }
+
+.arrowLinkText:hover {
+  opacity: 0.75;
+}
 
 .arrowLinkContent {
   display: inline-flex;
@@ -1274,7 +1536,10 @@
   padding: 0;
   transition: opacity 0.2s;
 }
-.navLogoBtn:hover { opacity: 0.75; }
+
+.navLogoBtn:hover {
+  opacity: 0.75;
+}
 
 .mobileMenuLogo {
   font-family: 'Instrument Serif', Georgia, serif;
@@ -1320,7 +1585,7 @@
 
 /* ─── Footer glow ────────────────────────────────────────── */
 .footer {
-  border-top: 1px solid rgba(255,255,255,0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding: 48px 40px;
   position: relative;
   overflow: hidden;
@@ -1333,12 +1598,10 @@
   transform: translateX(-50%);
   width: 600px;
   height: 200px;
-  background: radial-gradient(
-    ellipse at center bottom,
-    rgba(99,102,241,0.18) 0%,
-    rgba(14,165,233,0.10) 40%,
-    transparent 70%
-  );
+  background: radial-gradient(ellipse at center bottom,
+      rgba(99, 102, 241, 0.18) 0%,
+      rgba(14, 165, 233, 0.10) 40%,
+      transparent 70%);
   pointer-events: none;
   z-index: 0;
 }

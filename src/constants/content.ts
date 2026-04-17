@@ -1,4 +1,4 @@
-import type { NavLink, Metric, Phase, PortfolioItem, FaqItem } from "@/types";
+import type { NavLink, ValueStatement, Phase, PortfolioItem, FaqItem } from "@/types";
 
 export const NAV_LINKS: NavLink[] = [
   { label: "How it works", href: "#how" },
@@ -7,30 +7,39 @@ export const NAV_LINKS: NavLink[] = [
   { label: "FAQ", href: "#faq" },
 ];
 
-export const METRICS: Metric[] = [
-  { value: "5", unit: "days", label: "Audit delivery" },
-  { value: "10", unit: "issues", label: "Prioritized findings" },
-  { value: "30", unit: "min", label: "Strategy debrief" },
+export const VALUE_STATEMENTS: ValueStatement[] = [
+  {
+    title: "Research first",
+    desc: "We dig into your market, your audience, and your identity before writing a single line of code.",
+  },
+  {
+    title: "Nothing is arbitrary",
+    desc: "Every color, font, and layout decision has a reason. We don't decorate, we communicate.",
+  },
+  {
+    title: "Built for you",
+    desc: "Whether you need a web, an app, or both — the product emerges from what you need, not a template.",
+  },
 ];
 
 export const PHASES: Phase[] = [
   {
     num: "01",
-    title: "Structural Review",
-    desc: "Product + UX + performance + technical signals. Output: clear priorities and an actionable roadmap.",
-    tag: "Phase 1",
+    title: "We listen first",
+    desc: "Every project starts with understanding who you are, what you want to communicate, and who you're communicating it to.",
+    tag: "Our approach",
   },
   {
     num: "02",
-    title: "Implementation Sprint",
-    desc: "We execute the highest-impact fixes: onboarding, conversion, performance, reliability.",
-    tag: "Phase 2",
+    title: "Research over assumption",
+    desc: "Color, typography, structure — nothing is chosen at random. Everything earns its place through research and intention.",
+    tag: "Our process",
   },
   {
     num: "03",
-    title: "Optimization Partner",
-    desc: "Monthly support for sequencing, roadmap governance, and technical decision clarity.",
-    tag: "Phase 3",
+    title: "The product is the message",
+    desc: "A good website or app doesn't just look professional — it communicates the right things to the right people.",
+    tag: "Our belief",
   },
 ];
 

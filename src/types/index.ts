@@ -3,10 +3,9 @@ export interface NavLink {
   href: string;
 }
 
-export interface Metric {
-  value: string;
-  unit: string;
-  label: string;
+export interface ValueStatement {
+  title: string;
+  desc: string;
 }
 
 export interface Phase {

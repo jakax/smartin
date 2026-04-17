@@ -8,24 +8,41 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    product: "",
     context: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError(false);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) throw new Error();
+      setSubmitted(true);
+    } catch {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <section id="contact" className={styles.contactSection}>
       <FadeIn>
         <div className={styles.contactHeader}>
-          <p className={styles.sectionLabel}>Get started</p>
-          <h2 className={styles.contactTitle}>Request a Structural Review</h2>
+          <p className={styles.sectionLabel}>Let&apos;s talk</p>
+          <h2 className={styles.contactTitle}>Tell us about your project</h2>
           <p className={styles.contactSubtitle}>
-            Send your product link and a short context. We will confirm fit within 24 hours.
+            Share a bit about who you are and what you&apos;re building. We&apos;ll be in touch soon.
           </p>
         </div>
       </FadeIn>
@@ -34,9 +51,9 @@ export default function Contact() {
         {submitted ? (
           <div className={styles.successBox}>
             <div className={styles.successIcon}>✓</div>
-            <h3 className={styles.successTitle}>Request received</h3>
+            <h3 className={styles.successTitle}>Message received</h3>
             <p className={styles.successBody}>
-              We will review your product and get back to you within 24 hours to confirm fit.
+              Thanks for reaching out. We&apos;ll be in touch soon.
             </p>
           </div>
         ) : (
@@ -60,7 +77,7 @@ export default function Contact() {
                 <input
                   className={styles.formInput}
                   type="email"
-                  placeholder="you@company.com"
+                  placeholder="you@example.com"
                   value={formData.email}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     setFormData({ ...formData, email: e.target.value })
@@ -71,25 +88,11 @@ export default function Contact() {
             </div>
 
             <div className={styles.formField}>
-              <label className={styles.formLabel}>Product link</label>
-              <input
-                className={styles.formInput}
-                type="url"
-                placeholder="https://yourproduct.com"
-                value={formData.product}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setFormData({ ...formData, product: e.target.value })
-                }
-                required
-              />
-            </div>
-
-            <div className={styles.formField}>
-              <label className={styles.formLabel}>Context</label>
+              <label className={styles.formLabel}>Tell us about your project</label>
               <textarea
                 className={styles.formInput}
-                rows={4}
-                placeholder="Where are you, what is not working, what are you trying to achieve..."
+                rows={5}
+                placeholder="Who you are, what you're building, and what you're looking for..."
                 value={formData.context}
                 onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
                   setFormData({ ...formData, context: e.target.value })
@@ -98,15 +101,22 @@ export default function Contact() {
               />
             </div>
 
+            {error && (
+              <p className={styles.formError}>
+                Something went wrong. Please try again or reach out directly.
+              </p>
+            )}
+
             <button
               type="submit"
+              disabled={loading}
               className={`${styles.btnPrimary} ${styles.submitBtn}`}
             >
-              Send request
+              {loading ? "Sending..." : "Send message"}
             </button>
 
             <p className={styles.formNote}>
-              We confirm fit within 24 hours. No commitment required.
+              No commitment required.
             </p>
           </form>
         )}
