@@ -73,6 +73,14 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     screens: ["Hero section", "How it works", "For businesses", "For workers"],
     color: "#26A69A",
   },
+  {
+    label: "Website",
+    title: "Viviana Rodríguez",
+    desc: "A portfolio site for an Argentine paper weaving artist. Every section was designed with intention — colors, transitions, and animations built around her work and who she is, not a template. A site that feels alive.",
+    tags: ["Next.js", "Vercel", "Animations", "Art Portfolio"],
+    screens: [],
+    color: "#F59E0B",
+  },
 ];
 
 export const FAQ_ITEMS: FaqItem[] = [

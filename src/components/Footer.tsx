@@ -1,5 +1,6 @@
 import { NAV_LINKS } from "@/constants/content";
 import styles from "@/styles/landing.module.css";
+import Logo from "@/components/Logo";
 
 export default function Footer() {
   return (
@@ -9,7 +10,7 @@ export default function Footer() {
 
       <div className={styles.footerInner}>
         <div className={styles.footerLogo}>
-          Smart<span className={styles.navLogoAccent}>In</span>
+          <Logo width={120} />
         </div>
         <div className={styles.footerLinks}>
           {NAV_LINKS.map((l) => (

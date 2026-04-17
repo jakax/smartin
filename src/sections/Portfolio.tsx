@@ -6,24 +6,33 @@ import { PORTFOLIO_ITEMS } from "@/constants/content";
 import FadeIn from "@/components/FadeIn";
 import styles from "@/styles/landing.module.css";
 
-const APP_SCREENS = [
-  { src: "/images/app/job-list.png", label: "Job listings" },
-  { src: "/images/app/job-details.png", label: "Job details" },
-  { src: "/images/app/login1.png", label: "Sign in" },
-  { src: "/images/app/login2.png", label: "Register" },
-  { src: "/images/app/save.png", label: "Saved jobs" },
-  { src: "/images/app/my-shift-list.png", label: "My shifts" },
-  { src: "/images/app/my-shift-empty.png", label: "Empty shifts" },
+const ALL_SCREENS = [
+  [
+    { src: "/images/app/job-list.png", label: "Job listings" },
+    { src: "/images/app/job-details.png", label: "Job details" },
+    { src: "/images/app/login1.png", label: "Sign in" },
+    { src: "/images/app/login2.png", label: "Register" },
+    { src: "/images/app/save.png", label: "Saved jobs" },
+    { src: "/images/app/my-shift-list.png", label: "My shifts" },
+    { src: "/images/app/my-shift-empty.png", label: "Empty shifts" },
+  ],
+  [
+    { src: "/images/landing/hero1.png", label: "Hero" },
+    { src: "/images/landing/how-it-works.png", label: "How it works" },
+    { src: "/images/landing/for-business.png", label: "For businesses" },
+    { src: "/images/landing/for-workers.png", label: "For workers" },
+    { src: "/images/landing/workers-business.png", label: "Workflow" },
+    { src: "/images/landing/founders.png", label: "Founders" },
+  ],
+  [
+    { src: "/images/viviana-landing/hero.png", label: "Hero" },
+    { src: "/images/viviana-landing/black-and-white.png", label: "Black & White" },
+    { src: "/images/viviana-landing/nihon1.png", label: "Nihon I" },
+    { src: "/images/viviana-landing/nihon2.png", label: "Nihon II" },
+  ],
 ];
 
-const LANDING_SCREENS = [
-  { src: "/images/landing/hero1.png", label: "Hero" },
-  { src: "/images/landing/how-it-works.png", label: "How it works" },
-  { src: "/images/landing/for-business.png", label: "For businesses" },
-  { src: "/images/landing/for-workers.png", label: "For workers" },
-  { src: "/images/landing/workers-business.png", label: "Workflow" },
-  { src: "/images/landing/founders.png", label: "Founders" },
-];
+const IS_APP = [true, false, false];
 
 type Screen = { src: string; label: string };
 
@@ -224,8 +233,8 @@ export default function Portfolio() {
   const [activeTab, setActiveTab] = useState(0);
 
   const item = PORTFOLIO_ITEMS[activeTab];
-  const screens = activeTab === 0 ? APP_SCREENS : LANDING_SCREENS;
-  const isApp = activeTab === 0;
+  const screens = ALL_SCREENS[activeTab];
+  const isApp = IS_APP[activeTab];
 
   return (
     <section id="portfolio" className={styles.portfolioSection}>

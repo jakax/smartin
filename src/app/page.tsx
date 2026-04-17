@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import Hero from "@/sections/Hero";
 import HowItWorks from "@/sections/HowItWorks";
 import Services from "@/sections/Services";
-import Portfolio from "@/sections/Portfolio";
+import PortfolioTeaser from "@/sections/PortfolioTeaser";
 import FaqPreview from "@/sections/FaqPreview";
 import Contact from "@/sections/Contact";
 import styles from "@/styles/landing.module.css";
@@ -33,7 +33,7 @@ export default function Home() {
 
         <div className={styles.glowLine} />
 
-        <Portfolio />
+        <PortfolioTeaser />
 
         <div className={styles.glowLine} />
 

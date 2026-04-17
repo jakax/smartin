@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { NAV_LINKS } from "@/constants/content";
 import styles from "@/styles/landing.module.css";
+import Logo from "@/components/Logo";
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -26,8 +27,12 @@ export default function Nav() {
     setMouseX(e.clientX - rect.left);
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const handleLogoClick = () => {
+    if (isHome) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      window.location.href = "/";
+    }
     setMenuOpen(false);
   };
 
@@ -39,7 +44,7 @@ export default function Nav() {
         className={styles.navGlowLayer}
         style={{
           opacity: glowVisible ? 1 : 0,
-          background: `radial-gradient(500px circle at ${mouseX}px 32px, rgba(99,102,241,0.5) 0%, rgba(14,165,233,0.3) 35%, transparent 65%)`,
+          background: `radial-gradient(500px circle at ${mouseX}px 32px, rgba(24,183,167,0.35) 0%, rgba(61,147,161,0.2) 35%, transparent 65%)`,
         }}
       />
 
@@ -50,12 +55,8 @@ export default function Nav() {
         onMouseEnter={() => setGlowVisible(true)}
         onMouseLeave={() => setGlowVisible(false)}
       >
-        <button
-          onClick={scrollToTop}
-          className={styles.navLogoBtn}
-          aria-label="Back to top"
-        >
-          Smart<span className={styles.navLogoAccent}>In</span>
+        <button onClick={handleLogoClick} className={styles.navLogoBtn} aria-label="Ir al inicio">
+          <Logo width={120} />
         </button>
 
         <div className={styles.navLinks}>
@@ -85,8 +86,8 @@ export default function Nav() {
 
       {menuOpen && (
         <div className={styles.mobileMenu}>
-          <button onClick={scrollToTop} className={styles.mobileMenuLogo}>
-            Smart<span className={styles.navLogoAccent}>In</span>
+          <button onClick={handleLogoClick} className={styles.mobileMenuLogo}>
+            <Logo width={140} />
           </button>
           {NAV_LINKS.map((l) => (
             <a
