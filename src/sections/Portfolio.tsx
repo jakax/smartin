@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { PORTFOLIO_ITEMS } from "@/constants/content";
 import FadeIn from "@/components/FadeIn";
 import styles from "@/styles/landing.module.css";
+import { createPortal } from "react-dom";
 
 const ALL_SCREENS = [
   [
@@ -39,18 +40,35 @@ type Screen = { src: string; label: string };
 // ─── Modal ────────────────────────────────────────────────
 function ImageModal({
   screen,
+  screens,
   color,
   isApp,
   onClose,
 }: {
   screen: Screen;
+  screens: Screen[];
   color: string;
   isApp: boolean;
   onClose: () => void;
 }) {
+  const initialIndex = screens.findIndex((s) => s.src === screen.src);
+  const [activeIndex, setActiveIndex] = useState(initialIndex === -1 ? 0 : initialIndex);
+  const dragStartX = useRef<number | null>(null);
+
+  const prev = useCallback(
+    () => setActiveIndex((i) => (i - 1 + screens.length) % screens.length),
+    [screens.length]
+  );
+  const next = useCallback(
+    () => setActiveIndex((i) => (i + 1) % screens.length),
+    [screens.length]
+  );
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
     };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
@@ -58,35 +76,128 @@ function ImageModal({
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
     };
-  }, [onClose]);
+  }, [onClose, prev, next]);
 
-  return (
-    <div className={styles.modalOverlay} onClick={onClose}>
+  const handleMouseDown = (e: React.MouseEvent) => {
+    dragStartX.current = e.clientX;
+  };
+
+  const handleMouseUp = (e: React.MouseEvent) => {
+    if (dragStartX.current === null) return;
+    const delta = e.clientX - dragStartX.current;
+    if (Math.abs(delta) > 50) {
+      if (delta < 0) { next(); } else { prev(); }
+    }
+    dragStartX.current = null;
+  };
+
+  const getOffset = (index: number) => {
+    const total = screens.length;
+    let offset = index - activeIndex;
+    if (offset > total / 2) offset -= total;
+    if (offset < -total / 2) offset += total;
+    return offset;
+  };
+
+  const visibleIndices = screens
+    .map((_, i) => ({ i, offset: getOffset(i) }))
+    .filter(({ offset }) => Math.abs(offset) <= 1);
+
+  const frameClass = isApp ? styles.modalFrameApp : styles.modalFrameLanding;
+
+  return createPortal(
+    <div
+      className={styles.modalOverlay}
+      onClick={onClose}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+    >
       <div
         className={styles.modalContent}
         onClick={(e) => e.stopPropagation()}
+        onMouseDown={(e) => e.stopPropagation()}
+        onMouseUp={(e) => e.stopPropagation()}
       >
-        <button className={styles.modalClose} onClick={onClose} aria-label="Close">
-          ✕
-        </button>
-        <div
-          className={isApp ? styles.modalFrameApp : styles.modalFrameLanding}
-          style={{ borderColor: `${color}40` }}
+        {/* Arrow left */}
+        <button
+          className={styles.lightboxArrow}
+          style={{ left: 0 }}
+          onClick={(e) => { e.stopPropagation(); prev(); }}
+          aria-label="Previous"
         >
-          <Image
-            src={screen.src}
-            alt={screen.label}
-            fill
-            style={{ objectFit: "cover", objectPosition: "top" }}
-            sizes={isApp ? "340px" : "800px"}
-            priority
-          />
+          ‹
+        </button>
+
+        {/* Slides */}
+        <div className={styles.lightboxTrack}>
+          {visibleIndices.map(({ i, offset }) => {
+            const isCenter = offset === 0;
+            const s = screens[i];
+            return (
+              <div
+                key={s.src}
+                className={styles.lightboxSlide}
+                style={{
+                  transform: `translateX(${offset * 50}%) scale(${isCenter ? 1 : 0.82})`,
+                  opacity: isCenter ? 1 : 0.35,
+                  zIndex: isCenter ? 2 : 1,
+                  cursor: isCenter ? "default" : "pointer",
+                  transition: "transform 0.35s ease, opacity 0.35s ease",
+                  pointerEvents: isCenter ? "none" : "auto",
+                }}
+                onClick={() => setActiveIndex(i)}
+              >
+                <div
+                  className={frameClass}
+                  style={{ borderColor: isCenter ? `${color}80` : `${color}20` }}
+                >
+                  <Image
+                    src={s.src}
+                    alt={s.label}
+                    fill
+                    style={{ objectFit: "cover", objectPosition: "top" }}
+                    sizes={isApp ? "340px" : "700px"}
+                    priority={isCenter}
+                  />
+                </div>
+              </div>
+            );
+          })}
         </div>
-        <span className={styles.modalLabel} style={{ color }}>
-          {screen.label}
-        </span>
+
+        {/* Arrow right */}
+        <button
+          className={styles.lightboxArrow}
+          style={{ right: 0 }}
+          onClick={(e) => { e.stopPropagation(); next(); }}
+          aria-label="Next"
+        >
+          ›
+        </button>
+
+        {/* Label + dots */}
+        <div className={styles.lightboxMeta}>
+          <span className={styles.modalLabel} style={{ color }}>
+            {screens[activeIndex].label}
+          </span>
+          <div className={styles.lightboxDots}>
+            {screens.map((_, i) => (
+              <button
+                key={i}
+                className={styles.lightboxDot}
+                style={{
+                  background: i === activeIndex ? color : `${color}40`,
+                  transform: i === activeIndex ? "scale(1.3)" : "scale(1)",
+                }}
+                onClick={() => setActiveIndex(i)}
+                aria-label={`Go to ${screens[i].label}`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 
@@ -219,6 +330,7 @@ function ScreenCarousel({
       {modalScreen && (
         <ImageModal
           screen={modalScreen}
+          screens={screens}   // ← agregar esto
           color={color}
           isApp={isApp}
           onClose={() => setModalScreen(null)}
