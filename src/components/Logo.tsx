@@ -10,7 +10,7 @@ export default function Logo({ width = 160, className }: LogoProps) {
 
   return (
     <Image
-      src="/images/logo/smartin-horizontal-NO ISO.svg"
+      src="/images/logo/smartin.svg"
       alt="SmartIn"
       width={width}
       height={height}
