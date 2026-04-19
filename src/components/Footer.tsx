@@ -1,6 +1,6 @@
 import { NAV_LINKS } from "@/constants/content";
 import styles from "@/styles/landing.module.css";
-import Logo from "@/components/Logo";
+import IsoTipo from "@/components/IsoTipo";
 
 export default function Footer() {
   return (
@@ -10,7 +10,7 @@ export default function Footer() {
 
       <div className={styles.footerInner}>
         <div className={styles.footerLogo}>
-          <Logo width={120} />
+          <IsoTipo width={50} />
         </div>
         <div className={styles.footerLinks}>
           {NAV_LINKS.map((l) => (
