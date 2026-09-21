@@ -9,6 +9,7 @@ export default function Contact() {
     name: "",
     email: "",
     context: "",
+    website: "", // honeypot: real users never see or fill this
   });
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
@@ -39,10 +40,10 @@ export default function Contact() {
     <section id="contact" className={styles.contactSection}>
       <FadeIn>
         <div className={styles.contactHeader}>
-          <p className={styles.sectionLabel}>Let&apos;s talk</p>
-          <h2 className={styles.contactTitle}>Tell us about your project</h2>
+          <p className={styles.sectionLabel}>Get in touch</p>
+          <h2 className={styles.contactTitle}>Tell me about your project</h2>
           <p className={styles.contactSubtitle}>
-            Share a bit about who you are and what you&apos;re building. We&apos;ll be in touch soon.
+            Whether it&apos;s a project, an opportunity, or just a hello — write me a few lines and I&apos;ll get back to you soon.
           </p>
         </div>
       </FadeIn>
@@ -53,7 +54,7 @@ export default function Contact() {
             <div className={styles.successIcon}>✓</div>
             <h3 className={styles.successTitle}>Message received</h3>
             <p className={styles.successBody}>
-              Thanks for reaching out. We&apos;ll be in touch soon.
+              Thanks for reaching out. I&apos;ll get back to you soon.
             </p>
           </div>
         ) : (
@@ -87,8 +88,21 @@ export default function Contact() {
               </div>
             </div>
 
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              style={{ position: "absolute", left: "-9999px", opacity: 0 }}
+              value={formData.website}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setFormData({ ...formData, website: e.target.value })
+              }
+            />
+
             <div className={styles.formField}>
-              <label className={styles.formLabel}>Tell us about your project</label>
+              <label className={styles.formLabel}>Tell me about your project</label>
               <textarea
                 className={styles.formInput}
                 rows={5}

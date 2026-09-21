@@ -1673,3 +1673,18 @@
     padding: 100px 20px 20px;
   }
 }
+/* ─── Portfolio links ────────────────────────────────────── */
+.portfolioLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 24px;
+  margin-top: 20px;
+}
+
+.portfolioAvailability {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.5);
+}

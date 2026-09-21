@@ -14,20 +14,20 @@ export default function Hero() {
         </div>
 
         <h1 className={styles.heroTitle}>
-          We build products<br />
+          I build products<br />
           <span className={styles.heroTitleAccent}>that mean something.</span>
         </h1>
 
         <p className={styles.heroSubtitle}>
-          We take the time to understand who you are and what you need to communicate — then we build the product that says it best.
+          I take the time to understand who a project is for and what it needs to say — then I build the web or app that says it best.
         </p>
 
         <div className={styles.heroCtas}>
           <ArrowLink href="#contact" variant="primary">
-            Let&apos;s talk about your project
+            Get in touch
           </ArrowLink>
           <ArrowLink href="#how" variant="ghost">
-            See how it works
+            See how I work
           </ArrowLink>
         </div>
 

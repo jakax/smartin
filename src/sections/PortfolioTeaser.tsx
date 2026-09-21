@@ -7,9 +7,9 @@ export default function PortfolioTeaser() {
     <section id="portfolio" className={styles.portfolioSection}>
       <FadeIn>
         <div className={styles.portfolioHeader}>
-          <p className={styles.sectionLabel}>Our work</p>
+          <p className={styles.sectionLabel}>My work</p>
           <h2 className={styles.portfolioTitle}>
-            A few things we&apos;ve shipped.
+            A few things I&apos;ve shipped.
           </h2>
         </div>
       </FadeIn>

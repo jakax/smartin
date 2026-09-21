@@ -3,39 +3,12 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { PORTFOLIO_ITEMS } from "@/constants/content";
+import type { PortfolioScreen } from "@/types";
 import FadeIn from "@/components/FadeIn";
 import styles from "@/styles/landing.module.css";
 import { createPortal } from "react-dom";
 
-const ALL_SCREENS = [
-  [
-    { src: "/images/app/job-list.png", label: "Job listings" },
-    { src: "/images/app/job-details.png", label: "Job details" },
-    { src: "/images/app/login1.png", label: "Sign in" },
-    { src: "/images/app/login2.png", label: "Register" },
-    { src: "/images/app/save.png", label: "Saved jobs" },
-    { src: "/images/app/my-shift-list.png", label: "My shifts" },
-    { src: "/images/app/my-shift-empty.png", label: "Empty shifts" },
-  ],
-  [
-    { src: "/images/landing/hero1.png", label: "Hero" },
-    { src: "/images/landing/how-it-works.png", label: "How it works" },
-    { src: "/images/landing/for-business.png", label: "For businesses" },
-    { src: "/images/landing/for-workers.png", label: "For workers" },
-    { src: "/images/landing/workers-business.png", label: "Workflow" },
-    { src: "/images/landing/founders.png", label: "Founders" },
-  ],
-  [
-    { src: "/images/viviana-landing/hero.png", label: "Hero" },
-    { src: "/images/viviana-landing/black-and-white.png", label: "Black & White" },
-    { src: "/images/viviana-landing/nihon1.png", label: "Nihon I" },
-    { src: "/images/viviana-landing/nihon2.png", label: "Nihon II" },
-  ],
-];
-
-const IS_APP = [true, false, false];
-
-type Screen = { src: string; label: string };
+type Screen = PortfolioScreen;
 
 // ─── Modal ────────────────────────────────────────────────
 function ImageModal({
@@ -330,7 +303,7 @@ function ScreenCarousel({
       {modalScreen && (
         <ImageModal
           screen={modalScreen}
-          screens={screens}   // ← agregar esto
+          screens={screens}
           color={color}
           isApp={isApp}
           onClose={() => setModalScreen(null)}
@@ -345,8 +318,7 @@ export default function Portfolio() {
   const [activeTab, setActiveTab] = useState(0);
 
   const item = PORTFOLIO_ITEMS[activeTab];
-  const screens = ALL_SCREENS[activeTab];
-  const isApp = IS_APP[activeTab];
+  const { screens, isApp } = item;
 
   return (
     <section id="portfolio" className={styles.portfolioSection}>
@@ -374,13 +346,39 @@ export default function Portfolio() {
 
       <FadeIn delay={0.15}>
         <div className={styles.portfolioCardFull}>
-          <ScreenCarousel screens={screens} color={item.color} isApp={isApp} />
+          {screens.length > 0 && (
+            <ScreenCarousel
+              key={item.title}
+              screens={screens}
+              color={item.color}
+              isApp={isApp}
+            />
+          )}
 
           <div className={styles.portfolioCardContent}>
             <div className={styles.portfolioCardLeft}>
               <span className={styles.portfolioLabel}>{item.label}</span>
               <h3 className={styles.portfolioItemTitle}>{item.title}</h3>
               <p className={styles.portfolioDesc}>{item.desc}</p>
+              {item.links && item.links.length > 0 && (
+                <div className={styles.portfolioLinks}>
+                  {item.links.map((l) => (
+                    <a
+                      key={l.href}
+                      href={l.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.arrowLinkText}
+                      style={{ color: item.color }}
+                    >
+                      {l.label} ↗
+                    </a>
+                  ))}
+                  {item.availability && (
+                    <p className={styles.portfolioAvailability}>{item.availability}</p>
+                  )}
+                </div>
+              )}
             </div>
             <div className={styles.portfolioCardRight}>
               <div className={styles.portfolioTags}>

@@ -23,8 +23,6 @@ export default function Home() {
 
         <div className={styles.glowLine} />
 
-        <div className={styles.glowLine} />
-
         <HowItWorks />
 
         <div className={styles.glowLine} />

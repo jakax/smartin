@@ -34,8 +34,8 @@ export default function FaqPage() {
                 <span className={styles.heroTitleAccent}>answered.</span>
               </h1>
               <p className={styles.faqPageSubtitle}>
-                Everything you need to know about how SmartIn works.
-                Still have questions? Send us a message.
+                Everything you need to know about how I work.
+                Still have questions? Send me a message.
               </p>
             </div>
           </FadeIn>
@@ -71,10 +71,10 @@ export default function FaqPage() {
             <div className={styles.faqPageCta}>
               <p className={styles.sectionLabel}>Still have questions?</p>
               <h2 className={styles.faqCtaTitle}>
-                Send us a message and we will answer directly.
+                Send me a message and I will answer directly.
               </h2>
               <Link href="/#contact" className={styles.btnPrimary}>
-                Contact us
+                Contact me
               </Link>
             </div>
           </FadeIn>

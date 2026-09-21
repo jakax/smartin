@@ -9,15 +9,15 @@ export default function Services() {
       <div className={styles.servicesGrid}>
         <FadeIn>
           <div>
-            <p className={styles.sectionLabel}>How we work</p>
+            <p className={styles.sectionLabel}>My process</p>
             <h2 className={styles.servicesTitle}>
               A process built around understanding, not assumptions.
             </h2>
             <p className={styles.servicesBody}>
-              Every project is different. We don&apos;t start with a template — we start with questions. What do you need to communicate, to whom, and why. The product comes after.
+              Every project is different. I don&apos;t start with a template — I start with questions. What needs to be communicated, to whom, and why. The product comes after.
             </p>
             <ArrowLink href="#contact" variant="primary">
-              Start a conversation
+              Say hello
             </ArrowLink>
           </div>
         </FadeIn>
@@ -25,7 +25,7 @@ export default function Services() {
         <div>
           <FadeIn delay={0.1}>
             <div style={{ marginBottom: "0" }}>
-              <p className={styles.deliverablesLabel}>What we do together</p>
+              <p className={styles.deliverablesLabel}>What I do</p>
               <div>
                 {PROCESS_STEPS.map((step, i) => (
                   <div key={i} className={styles.deliverableItem}>
@@ -39,7 +39,7 @@ export default function Services() {
 
           <FadeIn delay={0.2}>
             <div className={styles.whoBox}>
-              <p className={styles.deliverablesLabel}>Who we work with</p>
+              <p className={styles.deliverablesLabel}>Who I work with</p>
               {WORKS_WITH.map((w, i) => (
                 <div key={i} className={styles.whoRow}>
                   <span className={styles.whoDot} />

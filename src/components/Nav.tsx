@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { NAV_LINKS } from "@/constants/content";
 import styles from "@/styles/landing.module.css";
 import Logo from "@/components/Logo";
@@ -13,6 +13,7 @@ export default function Nav() {
   const [glowVisible, setGlowVisible] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
+  const router = useRouter();
   const isHome = pathname === "/";
 
   useEffect(() => {
@@ -31,7 +32,7 @@ export default function Nav() {
     if (isHome) {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-      window.location.href = "/";
+      router.push("/");
     }
     setMenuOpen(false);
   };

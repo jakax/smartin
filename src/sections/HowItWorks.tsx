@@ -7,7 +7,7 @@ export default function HowItWorks() {
     <section id="how" className={styles.howSection}>
       <FadeIn>
         <div className={styles.howLabelWrapper}>
-          <p className={styles.sectionLabel}>How SmartIn works</p>
+          <p className={styles.sectionLabel}>How I work</p>
         </div>
       </FadeIn>
 
