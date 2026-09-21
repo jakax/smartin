@@ -393,6 +393,7 @@ export default function Portfolio() {
               )}
             </div>
             <div className={styles.portfolioCardRight}>
+              <p className={styles.portfolioStackLabel}>Built with</p>
               <div className={styles.portfolioTags}>
                 {item.tags.map((t) => (
                   <span key={t} className={styles.portfolioTechTag}>

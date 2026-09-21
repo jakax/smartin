@@ -32,10 +32,18 @@ describe("Portfolio", () => {
     expect(screen.getByText(/New Zealand and Australia/)).toBeInTheDocument();
   });
 
-  it("shows no links for projects without any", async () => {
+  it("links the live sites", async () => {
     render(<Portfolio />);
     await userEvent.click(screen.getByRole("button", { name: /QuickCrew Landing/ }));
-    expect(screen.queryByRole("link")).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /quickcrew-landing/ })).toHaveAttribute(
+      "href",
+      "https://quickcrew-landing.vercel.app/"
+    );
+    await userEvent.click(screen.getByRole("button", { name: /Viviana/ }));
+    expect(screen.getByRole("link", { name: /viviana-rodriguez/ })).toHaveAttribute(
+      "href",
+      "https://viviana-rodriguez.vercel.app/"
+    );
   });
 
   it("shows the Figma artwork gallery for Sweet Baby Name", async () => {

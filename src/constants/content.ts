@@ -125,6 +125,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     ],
     color: "#26A69A",
     shape: "wide",
+    links: [{ label: "Visit quickcrew-landing.vercel.app", href: "https://quickcrew-landing.vercel.app/" }],
   },
   {
     label: "Website",
@@ -156,6 +157,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     ],
     color: "#F59E0B",
     shape: "wide",
+    links: [{ label: "Visit viviana-rodriguez.vercel.app", href: "https://viviana-rodriguez.vercel.app/" }],
   },
 ];
 
