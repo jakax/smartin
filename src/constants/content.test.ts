@@ -20,7 +20,7 @@ describe("PORTFOLIO_ITEMS", () => {
 
   it("every screenshot exists in /public", () => {
     for (const item of PORTFOLIO_ITEMS) {
-      for (const s of item.screens) {
+      for (const s of [...item.screens, ...(item.artwork?.screens ?? [])]) {
         expect(existsSync(path.join(process.cwd(), "public", s.src)), s.src).toBe(true);
       }
     }

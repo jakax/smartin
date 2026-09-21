@@ -37,4 +37,12 @@ describe("Portfolio", () => {
     await userEvent.click(screen.getByRole("button", { name: /QuickCrew Landing/ }));
     expect(screen.queryByRole("link")).not.toBeInTheDocument();
   });
+
+  it("shows the Figma artwork gallery for Sweet Baby Name", async () => {
+    render(<Portfolio />);
+    await userEvent.click(screen.getByRole("button", { name: /Sweet Baby Name/ }));
+    expect(screen.getByText("Brand & illustration")).toBeInTheDocument();
+    expect(screen.getByText(/designed by me in Figma/)).toBeInTheDocument();
+    expect(screen.getAllByAltText("Brand · Doctor").length).toBeGreaterThan(0);
+  });
 });

@@ -60,19 +60,32 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     label: "Mobile Application",
     title: "Sweet Baby Name",
-    desc: "A baby-name discovery app I designed and built end to end. You swipe through more than 50,000 real names across Spanish, English, French, Portuguese, German, the Nordic languages and more. Every name comes as an illustrated character card with its own scene, and you can play solo or together with a partner in a shared real-time room, then save your favorites. Cards react to the phone's tilt with custom holographic shine effects rendered in Skia, and the app includes a premium subscription and bilingual (EN/ES) support.",
-    tags: ["React Native", "Expo", "TypeScript", "Skia", "Reanimated", "Firebase", "RevenueCat", "iOS"],
+    desc: "A baby-name discovery app I designed and built end to end. You swipe through more than 50,000 real names across Spanish, English, French, Portuguese, German, the Nordic languages and more. Every name comes as an illustrated character card with its own scene, and you can play solo or together with a partner in a shared real-time room, then save your favorites. Cards react to the phone's tilt with custom holographic shine effects rendered in Skia, and the app includes a premium subscription and bilingual (EN/ES) support. The brand, the logo and every baby character are my own illustrations, designed in Figma.",
+    tags: ["React Native", "Expo", "TypeScript", "Skia", "Reanimated", "Firebase", "RevenueCat", "Figma", "Illustration", "iOS"],
     screens: [
-      { src: "/images/sweet-baby-name/sbn-5.png", label: "Play solo" },
-      { src: "/images/sweet-baby-name/sbn-8.png", label: "Name card" },
-      { src: "/images/sweet-baby-name/sbn-9.png", label: "Character scene" },
-      { src: "/images/sweet-baby-name/sbn-3.png", label: "Favorites" },
+      { src: "/images/sweet-baby-name/web/app-mode.jpg", label: "Solo or partner" },
+      { src: "/images/sweet-baby-name/web/app-languages.jpg", label: "Languages" },
+      { src: "/images/sweet-baby-name/web/app-name-card.jpg", label: "Name card" },
+      { src: "/images/sweet-baby-name/web/app-character.jpg", label: "Character scene" },
+      { src: "/images/sweet-baby-name/web/app-match.jpg", label: "It's a match" },
+      { src: "/images/sweet-baby-name/web/app-partner.jpg", label: "Play together" },
     ],
     color: "#E0665C",
-    isApp: true,
+    shape: "phone",
     links: [
       { label: "Download on the App Store", href: "https://apps.apple.com/app/id6800422954" },
     ],
+    artwork: {
+      title: "Brand & illustration",
+      caption: "Logo and characters designed by me in Figma.",
+      screens: [
+        { src: "/images/sweet-baby-name/web/art-logo.jpg", label: "Logo" },
+        { src: "/images/sweet-baby-name/web/art-doctor.jpg", label: "Brand · Doctor" },
+        { src: "/images/sweet-baby-name/web/art-architect.jpg", label: "Brand · Architect" },
+        { src: "/images/sweet-baby-name/web/art-medieval.jpg", label: "Brand · Medieval" },
+        { src: "/images/sweet-baby-name/web/art-photographer.jpg", label: "Brand · Photographer" },
+      ],
+    },
   },
   {
     label: "Mobile Application",
@@ -89,7 +102,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
       { src: "/images/app/my-shift-empty.png", label: "Empty shifts" },
     ],
     color: "#00BCD4",
-    isApp: true,
+    shape: "phone",
     links: [
       { label: "App Store", href: "https://apps.apple.com/app/id6761596626" },
       { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.jacob.baron.quickcrewapp2" },
@@ -111,7 +124,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
       { src: "/images/landing/founders.png", label: "Founders" },
     ],
     color: "#26A69A",
-    isApp: false,
+    shape: "wide",
   },
   {
     label: "Website",
@@ -127,7 +140,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
       { src: "/images/hidden-sense/hs-4.jpg", label: "Contact" },
     ],
     color: "#8A7F72",
-    isApp: false,
+    shape: "wide",
     links: [{ label: "Visit hidden-sense.com", href: "https://www.hidden-sense.com/" }],
   },
   {
@@ -142,7 +155,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
       { src: "/images/viviana-landing/nihon2.png", label: "Nihon II" },
     ],
     color: "#F59E0B",
-    isApp: false,
+    shape: "wide",
   },
 ];
 

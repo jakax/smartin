@@ -25,6 +25,14 @@ export interface PortfolioLink {
   href: string;
 }
 
+export type ScreenShape = "phone" | "wide" | "square";
+
+export interface PortfolioArtwork {
+  title: string;
+  caption: string;
+  screens: PortfolioScreen[];
+}
+
 export interface PortfolioItem {
   label: string;
   title: string;
@@ -32,12 +40,14 @@ export interface PortfolioItem {
   tags: string[];
   screens: PortfolioScreen[];
   color: string;
-  /** Phone-shaped screenshots (true) or wide website screenshots (false). */
-  isApp: boolean;
+  /** Phone screenshots, wide website screenshots, or square artwork. */
+  shape: ScreenShape;
   /** Where to open or download the project (store pages, live site). */
   links?: PortfolioLink[];
   /** Short note shown next to the links, e.g. regional availability. */
   availability?: string;
+  /** Design work made for the project (e.g. brand and illustrations), shown as a second gallery. */
+  artwork?: PortfolioArtwork;
 }
 
 export interface FaqItem {

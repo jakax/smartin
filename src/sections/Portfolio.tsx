@@ -3,25 +3,37 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { PORTFOLIO_ITEMS } from "@/constants/content";
-import type { PortfolioScreen } from "@/types";
+import type { PortfolioScreen, ScreenShape } from "@/types";
 import FadeIn from "@/components/FadeIn";
 import styles from "@/styles/landing.module.css";
 import { createPortal } from "react-dom";
 
 type Screen = PortfolioScreen;
 
+const MODAL_FRAME: Record<ScreenShape, string> = {
+  phone: styles.modalFrameApp,
+  wide: styles.modalFrameLanding,
+  square: styles.modalFrameSquare,
+};
+const CAROUSEL_FRAME: Record<ScreenShape, string> = {
+  phone: styles.carouselFrameApp,
+  wide: styles.carouselFrameLanding,
+  square: styles.carouselFrameSquare,
+};
+const ITEM_WIDTH: Record<ScreenShape, number> = { phone: 110, wide: 220, square: 200 };
+
 // ─── Modal ────────────────────────────────────────────────
 function ImageModal({
   screen,
   screens,
   color,
-  isApp,
+  shape,
   onClose,
 }: {
   screen: Screen;
   screens: Screen[];
   color: string;
-  isApp: boolean;
+  shape: ScreenShape;
   onClose: () => void;
 }) {
   const initialIndex = screens.findIndex((s) => s.src === screen.src);
@@ -76,7 +88,7 @@ function ImageModal({
     .map((_, i) => ({ i, offset: getOffset(i) }))
     .filter(({ offset }) => Math.abs(offset) <= 1);
 
-  const frameClass = isApp ? styles.modalFrameApp : styles.modalFrameLanding;
+  const frameClass = MODAL_FRAME[shape];
 
   return createPortal(
     <div
@@ -129,7 +141,7 @@ function ImageModal({
                     alt={s.label}
                     fill
                     style={{ objectFit: "cover", objectPosition: "top" }}
-                    sizes={isApp ? "340px" : "700px"}
+                    sizes={shape === "wide" ? "700px" : "340px"}
                     priority={isCenter}
                   />
                 </div>
@@ -178,11 +190,11 @@ function ImageModal({
 function ScreenCarousel({
   screens,
   color,
-  isApp,
+  shape,
 }: {
   screens: Screen[];
   color: string;
-  isApp: boolean;
+  shape: ScreenShape;
 }) {
   const offsetRef = useRef(0);
   const frameRef = useRef<number | null>(null);
@@ -192,7 +204,7 @@ function ScreenCarousel({
   const [modalScreen, setModalScreen] = useState<Screen | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
-  const itemWidth = isApp ? 110 : 220;
+  const itemWidth = ITEM_WIDTH[shape];
   const gap = 16;
   const loopWidth = screens.length * (itemWidth + gap);
 
@@ -269,7 +281,7 @@ function ScreenCarousel({
                 onClick={() => handleClick(s)}
               >
                 <div
-                  className={isApp ? styles.carouselFrameApp : styles.carouselFrameLanding}
+                  className={CAROUSEL_FRAME[shape]}
                   style={{
                     borderColor: isHovered ? `${color}80` : `${color}30`,
                     transition: "border-color 0.35s ease",
@@ -280,7 +292,7 @@ function ScreenCarousel({
                     alt={s.label}
                     fill
                     style={{ objectFit: "cover", objectPosition: "top" }}
-                    sizes={isApp ? "110px" : "220px"}
+                    sizes={`${itemWidth}px`}
                     priority={i < screens.length}
                   />
                 </div>
@@ -305,7 +317,7 @@ function ScreenCarousel({
           screen={modalScreen}
           screens={screens}
           color={color}
-          isApp={isApp}
+          shape={shape}
           onClose={() => setModalScreen(null)}
         />
       )}
@@ -318,7 +330,7 @@ export default function Portfolio() {
   const [activeTab, setActiveTab] = useState(0);
 
   const item = PORTFOLIO_ITEMS[activeTab];
-  const { screens, isApp } = item;
+  const { screens, shape, artwork } = item;
 
   return (
     <section id="portfolio" className={styles.portfolioSection}>
@@ -351,7 +363,7 @@ export default function Portfolio() {
               key={item.title}
               screens={screens}
               color={item.color}
-              isApp={isApp}
+              shape={shape}
             />
           )}
 
@@ -390,6 +402,21 @@ export default function Portfolio() {
               </div>
             </div>
           </div>
+
+          {artwork && (
+            <div className={styles.portfolioArtwork}>
+              <div className={styles.portfolioArtworkHeader}>
+                <span className={styles.portfolioLabel}>{artwork.title}</span>
+                <p className={styles.portfolioArtworkCaption}>{artwork.caption}</p>
+              </div>
+              <ScreenCarousel
+                key={`${item.title}-artwork`}
+                screens={artwork.screens}
+                color={item.color}
+                shape="square"
+              />
+            </div>
+          )}
         </div>
       </FadeIn>
     </section>
