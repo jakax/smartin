@@ -88,6 +88,21 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     },
   },
   {
+    label: "Landing Page",
+    title: "Sweet Baby Name — Landing",
+    desc: "The bilingual (EN/ES) marketing site I built in Next.js for Sweet Baby Name's launch, with its own locale routing and matching the app's card-collecting identity: an animated hero with a swipeable card stack, a characters gallery, a premium frame showcase, and a roadmap section. The contact form is a Next.js Route Handler that sends mail through Resend. Covered with Vitest/Testing Library component tests and a Playwright smoke test.",
+    tags: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS v4", "Framer Motion", "i18n (EN/ES)", "Resend", "Vitest", "Playwright", "Vercel"],
+    screens: [
+      { src: "/images/sweet-baby-name/site/sbn-web-hero.jpg", label: "Hero" },
+      { src: "/images/sweet-baby-name/site/sbn-web-characters.jpg", label: "Character cards" },
+      { src: "/images/sweet-baby-name/site/sbn-web-collection.jpg", label: "Character collection" },
+      { src: "/images/sweet-baby-name/site/sbn-web-premium.jpg", label: "Premium" },
+    ],
+    color: "#534AB7",
+    shape: "wide",
+    links: [{ label: "Visit sweet-baby-name.vercel.app", href: "https://sweet-baby-name.vercel.app/" }],
+  },
+  {
     label: "Mobile Application",
     title: "QuickCrew App",
     desc: "A full React Native app I built to connect casual hospitality workers with employers in Queenstown, NZ. Serverless Firebase backend (Firestore with security rules, Cloud Functions, separate dev and prod projects), real-time shift management, dual user roles (Worker & Employer), document upload, visa validation, and a full hiring pipeline from application to assignment. I also built an admin backoffice for it. The app is live on both stores.",

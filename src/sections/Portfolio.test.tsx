@@ -16,7 +16,8 @@ describe("Portfolio", () => {
   it("renders a tab for every project", () => {
     render(<Portfolio />);
     for (const p of PORTFOLIO_ITEMS) {
-      expect(screen.getByRole("button", { name: new RegExp(p.title) })).toBeInTheDocument();
+      const escaped = p.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      expect(screen.getByRole("button", { name: new RegExp(escaped + "$") })).toBeInTheDocument();
     }
   });
 
@@ -44,11 +45,16 @@ describe("Portfolio", () => {
       "href",
       "https://viviana-rodriguez.vercel.app/"
     );
+    await userEvent.click(screen.getByRole("button", { name: /Sweet Baby Name — Landing/ }));
+    expect(screen.getByRole("link", { name: /sweet-baby-name\.vercel\.app/ })).toHaveAttribute(
+      "href",
+      "https://sweet-baby-name.vercel.app/"
+    );
   });
 
   it("shows the Figma artwork gallery for Sweet Baby Name", async () => {
     render(<Portfolio />);
-    await userEvent.click(screen.getByRole("button", { name: /Sweet Baby Name/ }));
+    await userEvent.click(screen.getByRole("button", { name: /Sweet Baby Name$/ }));
     expect(screen.getByText("Brand & illustration")).toBeInTheDocument();
     expect(screen.getByText(/designed by me in Figma/)).toBeInTheDocument();
     expect(screen.getAllByAltText("Brand · Doctor").length).toBeGreaterThan(0);
