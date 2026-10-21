@@ -1199,7 +1199,22 @@
   display: flex;
   gap: 12px;
   margin-bottom: 24px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(24, 183, 167, 0.3) transparent;
+}
+
+.portfolioTabs::-webkit-scrollbar {
+  height: 6px;
+}
+
+.portfolioTabs::-webkit-scrollbar-thumb {
+  background: rgba(24, 183, 167, 0.25);
+  border-radius: 999px;
 }
 
 .portfolioTab {
@@ -1213,8 +1228,9 @@
   gap: 4px;
   transition: all 0.25s;
   text-align: left;
-  flex: 1;
-  min-width: 180px;
+  flex: 0 0 auto;
+  width: 210px;
+  scroll-snap-align: start;
   font-family: 'Inter', sans-serif;
 }
 
@@ -1663,12 +1679,8 @@
     align-items: flex-start;
   }
 
-  .portfolioTabs {
-    flex-direction: column;
-  }
-
   .portfolioTab {
-    min-width: unset;
+    width: 160px;
   }
 
   .faqPageSection {
