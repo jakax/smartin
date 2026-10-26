@@ -5,12 +5,25 @@ import { PORTFOLIO_ITEMS } from "@/constants/content";
 import FadeIn from "@/components/FadeIn";
 import styles from "@/styles/landing.module.css";
 import { useT } from "@/lib/locale";
+import { slugifyTitle } from "@/lib/portfolio";
 
 const STRINGS = {
   myWork: { en: "My work", es: "Mi trabajo" },
   title: { en: "A few things I've shipped.", es: "Algunas cosas que lancé." },
   viewAll: { en: "View all projects →", es: "Ver todos los proyectos →" },
   goTo: { en: "Go to", es: "Ir a" },
+};
+
+const CARD_VIDEOS: Record<string, string> = {
+  "Sweet Baby Name — Landing": "/images/sweet-baby-name/landing-loop.mp4",
+  "Hidden Sense": "/images/hidden-sense/landing-loop.mp4",
+  "Viviana Rodríguez": "/images/viviana-landing/landing-loop.mp4",
+  "QuickCrew Landing": "/images/quickcrew-landing-loop.mp4",
+};
+
+const DEVICE_VIDEOS: Record<string, string> = {
+  "Sweet Baby Name": "/images/celebration-match.mp4",
+  "QuickCrew App": "/images/app/quickcrew-app-loop.mp4",
 };
 
 export default function PortfolioTeaser() {
@@ -55,25 +68,71 @@ export default function PortfolioTeaser() {
       <FadeIn delay={0.1}>
         <div className={styles.spotlightCarousel}>
           <div ref={trackRef} className={styles.spotlightTrack}>
-            {PORTFOLIO_ITEMS.map((item, i) => (
-              <a
-                key={item.title.en}
-                ref={(el) => {
-                  cardRefs.current[i] = el;
-                }}
-                href="/portfolio"
-                className={styles.spotlightCard}
-                style={{
-                  background: `linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), ${item.color}`,
-                }}
-              >
-                <span className={styles.spotlightBadgeRing} />
-                <div>
-                  <p className={styles.spotlightEyebrow}>{t(item.title)}</p>
-                  <h3 className={styles.spotlightHeadline}>{t(item.headline)}</h3>
-                </div>
-              </a>
-            ))}
+            {PORTFOLIO_ITEMS.map((item, i) => {
+              const cardVideo = CARD_VIDEOS[item.title.en];
+              const deviceVideo = DEVICE_VIDEOS[item.title.en];
+
+              return (
+                <a
+                  key={item.title.en}
+                  ref={(el) => {
+                    cardRefs.current[i] = el;
+                  }}
+                  href={`/portfolio?project=${slugifyTitle(item.title.en)}`}
+                  className={styles.spotlightCard}
+                  style={
+                    cardVideo
+                      ? { background: item.color }
+                      : { background: `linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), ${item.color}` }
+                  }
+                >
+                  {cardVideo && (
+                    <>
+                      <video
+                        src={cardVideo}
+                        className={styles.spotlightCardVideo}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        aria-hidden="true"
+                      />
+                      <div className={styles.spotlightCardOverlay} />
+                    </>
+                  )}
+
+                  <span className={styles.spotlightBadgeRing} />
+
+                  {deviceVideo && (
+                    <div className={styles.spotlightDeviceWrap}>
+                      <div className={styles.spotlightDevice}>
+                        <div className={styles.spotlightDeviceNotch} />
+                        <div className={styles.spotlightDeviceScreen}>
+                          <video
+                            src={deviceVideo}
+                            className={
+                              item.title.en === "Sweet Baby Name"
+                                ? `${styles.spotlightDeviceImg} ${styles.spotlightDeviceImgShiftDown}`
+                                : styles.spotlightDeviceImg
+                            }
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            aria-hidden="true"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className={styles.spotlightCardText}>
+                    <p className={styles.spotlightEyebrow}>{t(item.title)}</p>
+                    <h3 className={styles.spotlightHeadline}>{t(item.headline)}</h3>
+                  </div>
+                </a>
+              );
+            })}
           </div>
 
           <div className={styles.spotlightDots}>

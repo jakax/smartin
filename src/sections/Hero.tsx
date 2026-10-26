@@ -1,18 +1,65 @@
 "use client";
 
+import Image from "next/image";
 import ArrowLink from "@/components/ArrowLink";
 import FlowField from "@/components/FlowField";
 import styles from "@/styles/landing.module.css";
 import { useT } from "@/lib/locale";
 
 const STRINGS = {
-  badge: { en: "Digital Products & Brand Identity", es: "Productos Digitales e Identidad de Marca" },
   titleLine1: { en: "I build products", es: "Construyo productos" },
   titleAccent: { en: "that mean something.", es: "que significan algo." },
   getInTouch: { en: "Get in touch", es: "Ponte en contacto" },
   seeHowIWork: { en: "See how I work", es: "Ver cómo trabajo" },
-  deviceAlt: { en: "Sweet Baby Name, a name match screen", es: "Sweet Baby Name, una pantalla de match de nombre" },
 };
+
+type MarqueeItem = {
+  key: string;
+  name: string;
+  render: () => React.ReactNode;
+};
+
+const MARQUEE_ITEMS: MarqueeItem[] = [
+  {
+    key: "quickcrew",
+    name: "QuickCrew",
+    render: () => (
+      <Image
+        src="/images/quickcrew-logo-completo.png"
+        alt=""
+        width={507}
+        height={93}
+        className={styles.heroMarqueeLogoWide}
+      />
+    ),
+  },
+  {
+    key: "hidden-sense",
+    name: "Hidden Sense",
+    render: () => <span className={styles.heroMarqueeNameHiddenSense}>Hidden Sense</span>,
+  },
+  {
+    key: "viviana",
+    name: "Viviana Rodríguez",
+    render: () => <span className={styles.heroMarqueeNameViviana}>Viviana Rodríguez</span>,
+  },
+  {
+    key: "sbn",
+    name: "Sweet Baby Name",
+    render: () => (
+      <>
+        <Image
+          src="/images/sweet-baby-name/sbn-6.png"
+          alt=""
+          width={40}
+          height={40}
+          className={styles.heroMarqueeLogoSbn}
+        />
+        <span className={styles.heroMarqueeNameSbn}>Sweet Baby Name</span>
+      </>
+    ),
+  },
+];
 
 export default function Hero() {
   const t = useT();
@@ -23,11 +70,6 @@ export default function Hero() {
 
       <div className={styles.heroContentWrap}>
         <div className={styles.heroInner}>
-          <div className={styles.heroBadge}>
-            <span className={styles.heroBadgeDot} />
-            <span className={styles.heroBadgeText}>{t(STRINGS.badge)}</span>
-          </div>
-
           <h1 className={styles.heroTitle}>
             {t(STRINGS.titleLine1)}
             <br />
@@ -43,20 +85,16 @@ export default function Hero() {
             </ArrowLink>
           </div>
 
-          <div className={styles.heroDeviceWrap}>
-            <div className={styles.heroDevice}>
-              <div className={styles.heroDeviceNotch} />
-              <div className={styles.heroDeviceScreen}>
-                <video
-                  src="/images/celebration-match.mp4"
-                  aria-label={t(STRINGS.deviceAlt)}
-                  className={styles.heroDeviceImg}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
-              </div>
+          <div className={styles.heroMarqueeWrap}>
+            <div className={styles.heroMarqueeTrack}>
+              {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, i) => (
+                <div key={`${item.key}-${i}`} className={styles.heroMarqueeGroup}>
+                  <a href="#portfolio" className={styles.heroMarqueeItem} aria-label={item.name}>
+                    {item.render()}
+                  </a>
+                  <span className={styles.heroMarqueeDivider} />
+                </div>
+              ))}
             </div>
           </div>
         </div>

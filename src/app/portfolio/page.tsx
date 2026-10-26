@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Portfolio from "@/sections/Portfolio";
@@ -20,7 +21,9 @@ export default function PortfolioPage() {
       <Nav />
       <div className={styles.pageWrapper}>
         <PortfolioPageHeader />
-        <Portfolio />
+        <Suspense fallback={null}>
+          <Portfolio />
+        </Suspense>
         <Footer />
       </div>
     </div>

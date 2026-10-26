@@ -2,12 +2,14 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import { PORTFOLIO_ITEMS } from "@/constants/content";
 import type { PortfolioScreen, ScreenShape } from "@/types";
 import FadeIn from "@/components/FadeIn";
 import styles from "@/styles/landing.module.css";
 import { createPortal } from "react-dom";
 import { useT } from "@/lib/locale";
+import { slugifyTitle } from "@/lib/portfolio";
 
 type Screen = PortfolioScreen;
 
@@ -341,7 +343,13 @@ function ScreenCarousel({
 
 // ─── Portfolio ─────────────────────────────────────────────
 export default function Portfolio() {
-  const [activeTab, setActiveTab] = useState(0);
+  const searchParams = useSearchParams();
+  const [activeTab, setActiveTab] = useState(() => {
+    const slug = searchParams.get("project");
+    if (!slug) return 0;
+    const index = PORTFOLIO_ITEMS.findIndex((p) => slugifyTitle(p.title.en) === slug);
+    return index === -1 ? 0 : index;
+  });
   const t = useT();
 
   const item = PORTFOLIO_ITEMS[activeTab];
