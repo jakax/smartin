@@ -7,7 +7,10 @@ import { useT } from "@/lib/locale";
 
 const STRINGS = {
   label: { en: "Reviews", es: "Reseñas" },
-  title: { en: "People who actually used it.", es: "Gente que de verdad lo usó." },
+  title: {
+    en: "This is what people who trusted me have to say.",
+    es: "Esta es la opinión de la gente que confió en mí.",
+  },
 };
 
 export default function Testimonials() {
