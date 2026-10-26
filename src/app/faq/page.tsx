@@ -8,9 +8,24 @@ import Footer from "@/components/Footer";
 import FadeIn from "@/components/FadeIn";
 import styles from "@/styles/landing.module.css";
 import ArrowLink from "@/components/ArrowLink";
+import { useT } from "@/lib/locale";
+
+const STRINGS = {
+  backToHome: { en: "Back to home", es: "Volver al inicio" },
+  titleLine1: { en: "Every question,", es: "Toda pregunta," },
+  titleAccent: { en: "answered.", es: "respondida." },
+  subtitle: {
+    en: "Everything you need to know about how I work. Still have questions? Send me a message.",
+    es: "Todo lo que necesitás saber sobre cómo trabajo. ¿Todavía tenés preguntas? Enviame un mensaje.",
+  },
+  stillHaveQuestions: { en: "Still have questions?", es: "¿Todavía tenés preguntas?" },
+  ctaTitle: { en: "Send me a message and I will answer directly.", es: "Enviame un mensaje y te respondo directamente." },
+  contactMe: { en: "Contact me", es: "Contactame" },
+};
 
 export default function FaqPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const t = useT();
 
   return (
     <div className={styles.root}>
@@ -26,17 +41,15 @@ export default function FaqPage() {
           <FadeIn>
             <div className={styles.faqPageHeader}>
               <ArrowLink href="/" direction="left" className={styles.faqBackLink}>
-                Back to home
+                {t(STRINGS.backToHome)}
               </ArrowLink>
               <p className={styles.sectionLabel}>FAQ</p>
               <h1 className={styles.faqPageTitle}>
-                Every question,<br />
-                <span className={styles.heroTitleAccent}>answered.</span>
+                {t(STRINGS.titleLine1)}
+                <br />
+                <span className={styles.heroTitleAccent}>{t(STRINGS.titleAccent)}</span>
               </h1>
-              <p className={styles.faqPageSubtitle}>
-                Everything you need to know about how I work.
-                Still have questions? Send me a message.
-              </p>
+              <p className={styles.faqPageSubtitle}>{t(STRINGS.subtitle)}</p>
             </div>
           </FadeIn>
 
@@ -48,7 +61,7 @@ export default function FaqPage() {
                     className={styles.faqQuestion}
                     onClick={() => setOpenIndex(openIndex === i ? null : i)}
                   >
-                    <span>{item.q}</span>
+                    <span>{t(item.q)}</span>
                     <span className={`${styles.faqIcon} ${openIndex === i ? styles.faqIconOpen : ""}`}>
                       +
                     </span>
@@ -60,7 +73,7 @@ export default function FaqPage() {
                       paddingBottom: openIndex === i ? "24px" : "0",
                     }}
                   >
-                    {item.a}
+                    {t(item.a)}
                   </div>
                 </div>
               ))}
@@ -69,12 +82,10 @@ export default function FaqPage() {
 
           <FadeIn delay={0.2}>
             <div className={styles.faqPageCta}>
-              <p className={styles.sectionLabel}>Still have questions?</p>
-              <h2 className={styles.faqCtaTitle}>
-                Send me a message and I will answer directly.
-              </h2>
+              <p className={styles.sectionLabel}>{t(STRINGS.stillHaveQuestions)}</p>
+              <h2 className={styles.faqCtaTitle}>{t(STRINGS.ctaTitle)}</h2>
               <Link href="/#contact" className={styles.btnPrimary}>
-                Contact me
+                {t(STRINGS.contactMe)}
               </Link>
             </div>
           </FadeIn>

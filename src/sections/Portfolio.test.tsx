@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Portfolio from "./Portfolio";
 import { PORTFOLIO_ITEMS } from "@/constants/content";
+import { LocaleProvider } from "@/lib/locale";
 
 vi.mock("@/components/FadeIn", () => ({
   default: ({ children }: { children: React.ReactNode }) => <>{children}</>,
@@ -12,17 +13,25 @@ vi.mock("next/image", () => ({
   default: ({ src, alt }: { src: string; alt: string }) => <img src={src} alt={alt} />,
 }));
 
+function renderPortfolio() {
+  return render(
+    <LocaleProvider>
+      <Portfolio />
+    </LocaleProvider>
+  );
+}
+
 describe("Portfolio", () => {
   it("renders a tab for every project", () => {
-    render(<Portfolio />);
+    renderPortfolio();
     for (const p of PORTFOLIO_ITEMS) {
-      const escaped = p.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const escaped = p.title.en.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
       expect(screen.getByRole("button", { name: new RegExp(escaped + "$") })).toBeInTheDocument();
     }
   });
 
   it("shows store links and the regional note for QuickCrew App", async () => {
-    render(<Portfolio />);
+    renderPortfolio();
     await userEvent.click(screen.getByRole("button", { name: /QuickCrew App/ }));
 
     const appStore = screen.getByRole("link", { name: /App Store/ });
@@ -34,7 +43,7 @@ describe("Portfolio", () => {
   });
 
   it("links the live sites", async () => {
-    render(<Portfolio />);
+    renderPortfolio();
     await userEvent.click(screen.getByRole("button", { name: /QuickCrew Landing/ }));
     expect(screen.getByRole("link", { name: /quickcrew-landing/ })).toHaveAttribute(
       "href",
@@ -53,7 +62,7 @@ describe("Portfolio", () => {
   });
 
   it("shows the Figma artwork gallery for Sweet Baby Name", async () => {
-    render(<Portfolio />);
+    renderPortfolio();
     await userEvent.click(screen.getByRole("button", { name: /Sweet Baby Name$/ }));
     expect(screen.getByText("Brand & illustration")).toBeInTheDocument();
     expect(screen.getByText(/designed by me in Figma/)).toBeInTheDocument();

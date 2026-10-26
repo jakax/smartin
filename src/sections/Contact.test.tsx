@@ -2,6 +2,15 @@ import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Contact from "./Contact";
+import { LocaleProvider } from "@/lib/locale";
+
+function renderContact() {
+  return render(
+    <LocaleProvider>
+      <Contact />
+    </LocaleProvider>
+  );
+}
 
 vi.mock("@/components/FadeIn", () => ({
   default: ({ children }: { children: React.ReactNode }) => <>{children}</>,
@@ -26,7 +35,7 @@ afterEach(() => {
 describe("Contact form", () => {
   it("posts the form data and shows the success message", async () => {
     fetchMock.mockResolvedValue({ ok: true });
-    render(<Contact />);
+    renderContact();
     await fillAndSubmit();
 
     expect(await screen.findByText("Message received")).toBeInTheDocument();
@@ -42,7 +51,7 @@ describe("Contact form", () => {
 
   it("shows an error and keeps the form when the request fails", async () => {
     fetchMock.mockResolvedValue({ ok: false });
-    render(<Contact />);
+    renderContact();
     await fillAndSubmit();
 
     expect(await screen.findByText(/Something went wrong/)).toBeInTheDocument();
@@ -51,7 +60,7 @@ describe("Contact form", () => {
 
   it("shows an error when the network throws", async () => {
     fetchMock.mockRejectedValue(new Error("offline"));
-    render(<Contact />);
+    renderContact();
     await fillAndSubmit();
     expect(await screen.findByText(/Something went wrong/)).toBeInTheDocument();
   });

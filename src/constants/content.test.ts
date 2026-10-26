@@ -5,14 +5,15 @@ import { PORTFOLIO_ITEMS, FAQ_ITEMS, NAV_LINKS } from "./content";
 
 describe("PORTFOLIO_ITEMS", () => {
   it("has unique titles (used as React keys)", () => {
-    const titles = PORTFOLIO_ITEMS.map((p) => p.title);
+    const titles = PORTFOLIO_ITEMS.map((p) => p.title.en);
     expect(new Set(titles).size).toBe(titles.length);
   });
 
-  it.each(PORTFOLIO_ITEMS.map((p) => [p.title, p] as const))(
+  it.each(PORTFOLIO_ITEMS.map((p) => [p.title.en, p] as const))(
     "%s has complete data",
     (_title, item) => {
-      expect(item.desc.length).toBeGreaterThan(0);
+      expect(item.desc.en.length).toBeGreaterThan(0);
+      expect(item.desc.es.length).toBeGreaterThan(0);
       expect(item.tags.length).toBeGreaterThan(0);
       expect(item.color).toMatch(/^#[0-9A-Fa-f]{6}$/);
     }
@@ -29,7 +30,7 @@ describe("PORTFOLIO_ITEMS", () => {
   it("external links are absolute https URLs", () => {
     for (const item of PORTFOLIO_ITEMS) {
       for (const l of item.links ?? []) {
-        expect(l.href, `${item.title}: ${l.label}`).toMatch(/^https:\/\//);
+        expect(l.href, `${item.title.en}: ${l.label.en}`).toMatch(/^https:\/\//);
       }
     }
   });
@@ -42,10 +43,12 @@ describe("PORTFOLIO_ITEMS", () => {
 });
 
 describe("other content", () => {
-  it("FAQ entries are non-empty", () => {
+  it("FAQ entries are non-empty in both languages", () => {
     for (const f of FAQ_ITEMS) {
-      expect(f.q.trim()).not.toBe("");
-      expect(f.a.trim()).not.toBe("");
+      expect(f.q.en.trim()).not.toBe("");
+      expect(f.q.es.trim()).not.toBe("");
+      expect(f.a.en.trim()).not.toBe("");
+      expect(f.a.es.trim()).not.toBe("");
     }
   });
 

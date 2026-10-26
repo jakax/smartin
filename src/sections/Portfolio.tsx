@@ -7,8 +7,20 @@ import type { PortfolioScreen, ScreenShape } from "@/types";
 import FadeIn from "@/components/FadeIn";
 import styles from "@/styles/landing.module.css";
 import { createPortal } from "react-dom";
+import { useT } from "@/lib/locale";
 
 type Screen = PortfolioScreen;
+
+const STRINGS = {
+  portfolio: { en: "Portfolio", es: "Portfolio" },
+  title: { en: "Work that speaks for itself.", es: "Trabajo que habla por sí solo." },
+  builtWith: { en: "Built with", es: "Construido con" },
+  previous: { en: "Previous", es: "Anterior" },
+  next: { en: "Next", es: "Siguiente" },
+  goTo: { en: "Go to", es: "Ir a" },
+  walkthrough: { en: "Full walkthrough", es: "Recorrido completo" },
+  walkthroughTitle: { en: "See it in action.", es: "Mirala en acción." },
+};
 
 const MODAL_FRAME: Record<ScreenShape, string> = {
   phone: styles.modalFrameApp,
@@ -36,6 +48,7 @@ function ImageModal({
   shape: ScreenShape;
   onClose: () => void;
 }) {
+  const t = useT();
   const initialIndex = screens.findIndex((s) => s.src === screen.src);
   const [activeIndex, setActiveIndex] = useState(initialIndex === -1 ? 0 : initialIndex);
   const dragStartX = useRef<number | null>(null);
@@ -108,7 +121,7 @@ function ImageModal({
           className={styles.lightboxArrow}
           style={{ left: 0 }}
           onClick={(e) => { e.stopPropagation(); prev(); }}
-          aria-label="Previous"
+          aria-label={t(STRINGS.previous)}
         >
           ‹
         </button>
@@ -138,7 +151,7 @@ function ImageModal({
                 >
                   <Image
                     src={s.src}
-                    alt={s.label}
+                    alt={t(s.label)}
                     fill
                     style={{ objectFit: "cover", objectPosition: "top" }}
                     sizes={shape === "wide" ? "700px" : "340px"}
@@ -155,7 +168,7 @@ function ImageModal({
           className={styles.lightboxArrow}
           style={{ right: 0 }}
           onClick={(e) => { e.stopPropagation(); next(); }}
-          aria-label="Next"
+          aria-label={t(STRINGS.next)}
         >
           ›
         </button>
@@ -163,10 +176,10 @@ function ImageModal({
         {/* Label + dots */}
         <div className={styles.lightboxMeta}>
           <span className={styles.modalLabel} style={{ color }}>
-            {screens[activeIndex].label}
+            {t(screens[activeIndex].label)}
           </span>
           <div className={styles.lightboxDots}>
-            {screens.map((_, i) => (
+            {screens.map((s, i) => (
               <button
                 key={i}
                 className={styles.lightboxDot}
@@ -175,7 +188,7 @@ function ImageModal({
                   transform: i === activeIndex ? "scale(1.3)" : "scale(1)",
                 }}
                 onClick={() => setActiveIndex(i)}
-                aria-label={`Go to ${screens[i].label}`}
+                aria-label={`${t(STRINGS.goTo)} ${t(s.label)}`}
               />
             ))}
           </div>
@@ -196,6 +209,7 @@ function ScreenCarousel({
   color: string;
   shape: ScreenShape;
 }) {
+  const t = useT();
   const offsetRef = useRef(0);
   const frameRef = useRef<number | null>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -289,7 +303,7 @@ function ScreenCarousel({
                 >
                   <Image
                     src={s.src}
-                    alt={s.label}
+                    alt={t(s.label)}
                     fill
                     style={{ objectFit: "cover", objectPosition: "top" }}
                     sizes={`${itemWidth}px`}
@@ -304,7 +318,7 @@ function ScreenCarousel({
                     fontWeight: isHovered ? 600 : 500,
                   }}
                 >
-                  {s.label}
+                  {t(s.label)}
                 </span>
               </div>
             );
@@ -328,16 +342,17 @@ function ScreenCarousel({
 // ─── Portfolio ─────────────────────────────────────────────
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState(0);
+  const t = useT();
 
   const item = PORTFOLIO_ITEMS[activeTab];
-  const { screens, shape, artwork } = item;
+  const { screens, shape, artwork, walkthroughVideo } = item;
 
   return (
     <section id="portfolio" className={styles.portfolioSection}>
       <FadeIn>
         <div className={styles.portfolioHeader}>
-          <p className={styles.sectionLabel}>Portfolio</p>
-          <h2 className={styles.portfolioTitle}>Work that speaks for itself.</h2>
+          <p className={styles.sectionLabel}>{t(STRINGS.portfolio)}</p>
+          <h2 className={styles.portfolioTitle}>{t(STRINGS.title)}</h2>
         </div>
       </FadeIn>
 
@@ -345,12 +360,12 @@ export default function Portfolio() {
         <div className={styles.portfolioTabs}>
           {PORTFOLIO_ITEMS.map((p, i) => (
             <button
-              key={p.title}
+              key={p.title.en}
               className={`${styles.portfolioTab} ${activeTab === i ? styles.portfolioTabActive : ""}`}
               onClick={() => setActiveTab(i)}
             >
-              <span className={styles.portfolioTabLabel}>{p.label}</span>
-              <span className={styles.portfolioTabTitle}>{p.title}</span>
+              <span className={styles.portfolioTabLabel}>{t(p.label)}</span>
+              <span className={styles.portfolioTabTitle}>{t(p.title)}</span>
             </button>
           ))}
         </div>
@@ -360,7 +375,7 @@ export default function Portfolio() {
         <div className={styles.portfolioCardFull}>
           {screens.length > 0 && (
             <ScreenCarousel
-              key={item.title}
+              key={item.title.en}
               screens={screens}
               color={item.color}
               shape={shape}
@@ -369,9 +384,9 @@ export default function Portfolio() {
 
           <div className={styles.portfolioCardContent}>
             <div className={styles.portfolioCardLeft}>
-              <span className={styles.portfolioLabel}>{item.label}</span>
-              <h3 className={styles.portfolioItemTitle}>{item.title}</h3>
-              <p className={styles.portfolioDesc}>{item.desc}</p>
+              <span className={styles.portfolioLabel}>{t(item.label)}</span>
+              <h3 className={styles.portfolioItemTitle}>{t(item.title)}</h3>
+              <p className={styles.portfolioDesc}>{t(item.desc)}</p>
               {item.links && item.links.length > 0 && (
                 <div className={styles.portfolioLinks}>
                   {item.links.map((l) => (
@@ -383,35 +398,54 @@ export default function Portfolio() {
                       className={styles.arrowLinkText}
                       style={{ color: item.color }}
                     >
-                      {l.label} ↗
+                      {t(l.label)} ↗
                     </a>
                   ))}
                   {item.availability && (
-                    <p className={styles.portfolioAvailability}>{item.availability}</p>
+                    <p className={styles.portfolioAvailability}>{t(item.availability)}</p>
                   )}
                 </div>
               )}
             </div>
             <div className={styles.portfolioCardRight}>
-              <p className={styles.portfolioStackLabel}>Built with</p>
+              <p className={styles.portfolioStackLabel}>{t(STRINGS.builtWith)}</p>
               <div className={styles.portfolioTags}>
-                {item.tags.map((t) => (
-                  <span key={t} className={styles.portfolioTechTag}>
-                    {t}
+                {item.tags.map((tag) => (
+                  <span key={tag} className={styles.portfolioTechTag}>
+                    {tag}
                   </span>
                 ))}
               </div>
             </div>
           </div>
 
+          {walkthroughVideo && (
+            <div className={styles.portfolioWalkthrough}>
+              <span className={styles.portfolioLabel}>{t(STRINGS.walkthrough)}</span>
+              <h4 className={styles.portfolioWalkthroughTitle}>{t(STRINGS.walkthroughTitle)}</h4>
+              <div className={styles.walkthroughDevice}>
+                <div className={styles.heroDeviceNotch} />
+                <div className={styles.heroDeviceScreen}>
+                  <video
+                    src={walkthroughVideo}
+                    className={styles.heroDeviceImg}
+                    controls
+                    playsInline
+                    preload="metadata"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
           {artwork && (
             <div className={styles.portfolioArtwork}>
               <div className={styles.portfolioArtworkHeader}>
-                <span className={styles.portfolioLabel}>{artwork.title}</span>
-                <p className={styles.portfolioArtworkCaption}>{artwork.caption}</p>
+                <span className={styles.portfolioLabel}>{t(artwork.title)}</span>
+                <p className={styles.portfolioArtworkCaption}>{t(artwork.caption)}</p>
               </div>
               <ScreenCarousel
-                key={`${item.title}-artwork`}
+                key={`${item.title.en}-artwork`}
                 screens={artwork.screens}
                 color={item.color}
                 shape="square"

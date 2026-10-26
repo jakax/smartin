@@ -5,6 +5,16 @@ import { usePathname, useRouter } from "next/navigation";
 import { NAV_LINKS } from "@/constants/content";
 import styles from "@/styles/landing.module.css";
 import Logo from "@/components/Logo";
+import { useTheme } from "@/lib/theme";
+import { useLocale, useT } from "@/lib/locale";
+
+const STRINGS = {
+  startConversation: { en: "Start a conversation", es: "Iniciar una conversación" },
+  goHome: { en: "Go to home", es: "Ir al inicio" },
+  toggleMenu: { en: "Toggle menu", es: "Abrir/cerrar menú" },
+  toggleTheme: { en: "Switch to dark mode", es: "Cambiar a modo oscuro" },
+  toggleThemeToLight: { en: "Switch to light mode", es: "Cambiar a modo claro" },
+};
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -15,6 +25,9 @@ export default function Nav() {
   const pathname = usePathname();
   const router = useRouter();
   const isHome = pathname === "/";
+  const { theme, toggleTheme } = useTheme();
+  const { locale, setLocale } = useLocale();
+  const t = useT();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -37,7 +50,10 @@ export default function Nav() {
     setMenuOpen(false);
   };
 
-  const getHref = (href: string) => isHome ? href : `/${href}`;
+  const getHref = (href: string) => {
+    if (href.startsWith("/")) return href;
+    return isHome ? href : `/${href}`;
+  };
 
   return (
     <>
@@ -45,7 +61,7 @@ export default function Nav() {
         className={styles.navGlowLayer}
         style={{
           opacity: glowVisible ? 1 : 0,
-          background: `radial-gradient(500px circle at ${mouseX}px 32px, rgba(24,183,167,0.35) 0%, rgba(61,147,161,0.2) 35%, transparent 65%)`,
+          background: `radial-gradient(500px circle at ${mouseX}px 32px, rgba(var(--accent-rgb), 0.35) 0%, rgba(var(--accent-rgb), 0.2) 35%, transparent 65%)`,
         }}
       />
 
@@ -56,16 +72,37 @@ export default function Nav() {
         onMouseEnter={() => setGlowVisible(true)}
         onMouseLeave={() => setGlowVisible(false)}
       >
-        <button onClick={handleLogoClick} className={styles.navLogoBtn} aria-label="Ir al inicio">
+        <button onClick={handleLogoClick} className={styles.navLogoBtn} aria-label={t(STRINGS.goHome)}>
           <Logo width={120} />
         </button>
 
         <div className={styles.navLinks}>
           {NAV_LINKS.map((l) => (
-            <a key={l.label} href={getHref(l.href)} className={styles.navLink}>
-              {l.label}
+            <a key={l.label.en} href={getHref(l.href)} className={styles.navLink}>
+              {t(l.label)}
             </a>
           ))}
+        </div>
+
+        <div className={styles.navToggles}>
+          <button
+            type="button"
+            className={styles.navIconToggle}
+            onClick={toggleTheme}
+            aria-label={t(theme === "light" ? STRINGS.toggleTheme : STRINGS.toggleThemeToLight)}
+          >
+            {theme === "light" ? "🌙" : "☀️"}
+          </button>
+          <button
+            type="button"
+            className={styles.navLocaleToggle}
+            onClick={() => setLocale(locale === "en" ? "es" : "en")}
+            aria-label="Toggle language"
+          >
+            <span className={locale === "en" ? styles.navLocaleActive : ""}>EN</span>
+            <span className={styles.navLocaleSep}>/</span>
+            <span className={locale === "es" ? styles.navLocaleActive : ""}>ES</span>
+          </button>
         </div>
 
         <a
@@ -73,13 +110,13 @@ export default function Nav() {
           className={`${styles.btnPrimary} ${styles.navCta}`}
           style={{ padding: "10px 22px", fontSize: "13px" }}
         >
-          Start a conversation
+          {t(STRINGS.startConversation)}
         </a>
 
         <button
           className={styles.navMobileBtn}
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
+          aria-label={t(STRINGS.toggleMenu)}
         >
           {menuOpen ? "✕" : "☰"}
         </button>
@@ -92,20 +129,42 @@ export default function Nav() {
           </button>
           {NAV_LINKS.map((l) => (
             <a
-              key={l.label}
+              key={l.label.en}
               href={getHref(l.href)}
               className={styles.mobileMenuLink}
               onClick={() => setMenuOpen(false)}
             >
-              {l.label}
+              {t(l.label)}
             </a>
           ))}
+
+          <div className={styles.navToggles} style={{ margin: "8px 0" }}>
+            <button
+              type="button"
+              className={styles.navIconToggle}
+              onClick={toggleTheme}
+              aria-label={t(theme === "light" ? STRINGS.toggleTheme : STRINGS.toggleThemeToLight)}
+            >
+              {theme === "light" ? "🌙" : "☀️"}
+            </button>
+            <button
+              type="button"
+              className={styles.navLocaleToggle}
+              onClick={() => setLocale(locale === "en" ? "es" : "en")}
+              aria-label="Toggle language"
+            >
+              <span className={locale === "en" ? styles.navLocaleActive : ""}>EN</span>
+              <span className={styles.navLocaleSep}>/</span>
+              <span className={locale === "es" ? styles.navLocaleActive : ""}>ES</span>
+            </button>
+          </div>
+
           <a
             href={getHref("#contact")}
             className={styles.btnPrimary}
             onClick={() => setMenuOpen(false)}
           >
-            Start a conversation
+            {t(STRINGS.startConversation)}
           </a>
         </div>
       )}

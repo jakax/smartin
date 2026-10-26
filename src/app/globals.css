@@ -1,8 +1,43 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink-rgb: 32, 33, 36;
+  --accent-rgb: 61, 90, 254;
+  --lime-rgb: 217, 240, 74;
+  --lime-text-rgb: 107, 122, 15;
+  --bg-rgb: 245, 245, 245;
+  --surface-rgb: 255, 255, 255;
+  --bg-subtle-rgb: 240, 242, 244;
+  --hairline-rgb: 0, 0, 0;
+  --live-rgb: 224, 48, 48;
+
+  --ink: rgb(var(--ink-rgb));
+  --ink-muted: rgba(var(--ink-rgb), 0.6);
+  --ink-subtle: rgba(var(--ink-rgb), 0.4);
+  --accent: rgb(var(--accent-rgb));
+  --lime: rgb(var(--lime-rgb));
+  --lime-text: rgb(var(--lime-text-rgb));
+  --bg: rgb(var(--bg-rgb));
+  --surface: rgb(var(--surface-rgb));
+  --bg-subtle: rgb(var(--bg-subtle-rgb));
+  --hairline: rgb(var(--hairline-rgb));
+  --live: rgb(var(--live-rgb));
+  --on-lime: #202124;
+
+  --background: var(--bg);
+  --foreground: var(--ink);
+}
+
+:root[data-theme="dark"] {
+  --ink-rgb: 245, 245, 245;
+  --accent-rgb: 124, 140, 255;
+  --lime-rgb: 217, 240, 74;
+  --lime-text-rgb: 217, 240, 74;
+  --bg-rgb: 32, 33, 36;
+  --surface-rgb: 38, 39, 43;
+  --bg-subtle-rgb: 44, 45, 49;
+  --hairline-rgb: 245, 245, 245;
+  --live-rgb: 224, 48, 48;
 }
 
 @theme inline {
@@ -12,15 +47,9 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
