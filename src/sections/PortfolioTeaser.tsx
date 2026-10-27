@@ -101,8 +101,6 @@ export default function PortfolioTeaser() {
                     </>
                   )}
 
-                  <span className={styles.spotlightBadgeRing} />
-
                   {deviceVideo && (
                     <div className={styles.spotlightDeviceWrap}>
                       <div className={styles.spotlightDevice}>
