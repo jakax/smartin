@@ -224,6 +224,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     shape: "phone",
     links: [
       { label: { en: "Download on the App Store", es: "Descargar en App Store" }, href: "https://apps.apple.com/app/id6800422954" },
+      { label: { en: "Get it on Google Play", es: "Descargar en Google Play" }, href: "https://play.google.com/store/apps/details?id=com.jacob.baron.babynamematch&pcampaignid=web_share" },
     ],
     walkthroughVideo: "/images/sweet-baby-name/video-sbn.mp4",
     artwork: {
